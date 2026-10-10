@@ -1,0 +1,2341 @@
+{
+  "brand": "أولتراس الموحدة",
+  "version": "0.1",
+  "description": "Editable design layouts. Text is editable; marks retain separate vector layers. General audience templates.",
+  "colors": {
+    "green": "#006838",
+    "dark": "#073E2A",
+    "lime": "#B5F36B",
+    "paper": "#F7F8EF",
+    "ink": "#11261B",
+    "muted": "#5C7467",
+    "line": "#D7E2D6"
+  },
+  "assets": [
+    {
+      "id": "logo-primary",
+      "title": "الشعار الأساسي",
+      "width": 1200,
+      "height": 930,
+      "background": "transparent",
+      "elements": [
+        {
+          "type": "group",
+          "transform": "translate(280 40) scale(1.32)",
+          "elements": [
+            {
+              "type": "group",
+              "transform": "",
+              "elements": [
+                {
+                  "type": "path",
+                  "d": "M244 272 L267 78",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 12
+                },
+                {
+                  "type": "path",
+                  "d": "M269 73 C312 35 357 99 419 59 L419 179 C359 216 316 151 269 191 Z",
+                  "fill": "#F7F8EF",
+                  "stroke": "#006838",
+                  "strokeWidth": 8
+                },
+                {
+                  "type": "image",
+                  "href": "assets/source/raam-logo-2021.svg",
+                  "x": 294,
+                  "y": 105,
+                  "width": 100,
+                  "height": 48,
+                  "preserveAspectRatio": "xMidYMid meet"
+                }
+              ],
+              "id": "flag"
+            },
+            {
+              "type": "group",
+              "transform": "",
+              "elements": [
+                {
+                  "type": "circle",
+                  "cx": 84,
+                  "cy": 288,
+                  "r": 22,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M53 360 L55 335 Q58 317 84 317 Q111 317 113 340 L116 380 Q115 397 96 397 L71 394 Q51 390 53 360 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 160,
+                  "cy": 249,
+                  "r": 24,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M126 377 L128 302 Q130 278 160 278 Q190 278 192 301 L194 387 Q178 403 149 399 Q126 397 126 377 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 240,
+                  "cy": 223,
+                  "r": 27,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M202 384 L204 284 Q206 257 240 257 Q274 257 276 284 L278 384 Q266 407 240 407 Q214 407 202 384 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 322,
+                  "cy": 249,
+                  "r": 24,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M289 387 L291 301 Q293 278 322 278 Q352 278 354 302 L356 377 Q356 397 333 399 Q304 403 289 387 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 397,
+                  "cy": 288,
+                  "r": 22,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M366 380 L368 340 Q370 317 397 317 Q423 317 426 335 L428 360 Q430 390 410 394 L385 397 Q366 397 366 380 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M220 295 Q187 282 179 245 L168 208",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 21
+                },
+                {
+                  "type": "path",
+                  "d": "M267 295 Q300 270 315 227 L329 196",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 21
+                },
+                {
+                  "type": "path",
+                  "d": "M137 329 Q109 319 97 295 L75 262",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 16
+                },
+                {
+                  "type": "path",
+                  "d": "M345 329 Q373 319 384 295 L405 261",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 16
+                }
+              ],
+              "id": "crowd"
+            }
+          ],
+          "id": "brand-mark"
+        },
+        {
+          "type": "text",
+          "text": "أولتراس الموحدة",
+          "x": 600,
+          "y": 730,
+          "size": 98,
+          "fill": "#006838",
+          "weight": 950,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "text": "مجموعة مناصرين مستقلة",
+          "x": 600,
+          "y": 803,
+          "size": 31,
+          "fill": "#5C7467",
+          "weight": 650,
+          "anchor": "middle"
+        }
+      ]
+    },
+    {
+      "id": "logo-black",
+      "title": "الشعار أحادي اللون الأسود",
+      "width": 1200,
+      "height": 930,
+      "background": "transparent",
+      "elements": [
+        {
+          "type": "group",
+          "transform": "translate(280 40) scale(1.32)",
+          "elements": [
+            {
+              "type": "group",
+              "transform": "",
+              "elements": [
+                {
+                  "type": "path",
+                  "d": "M244 272 L267 78",
+                  "fill": "none",
+                  "stroke": "#000000",
+                  "strokeWidth": 12
+                },
+                {
+                  "type": "path",
+                  "d": "M269 73 C312 35 357 99 419 59 L419 179 C359 216 316 151 269 191 Z",
+                  "fill": "none",
+                  "stroke": "#000000",
+                  "strokeWidth": 8
+                },
+                {
+                  "type": "image",
+                  "href": "assets/source/raam-logo-2021.svg",
+                  "x": 294,
+                  "y": 105,
+                  "width": 100,
+                  "height": 48,
+                  "preserveAspectRatio": "xMidYMid meet",
+                  "fillOverride": "#000000"
+                }
+              ],
+              "id": "flag"
+            },
+            {
+              "type": "group",
+              "transform": "",
+              "elements": [
+                {
+                  "type": "circle",
+                  "cx": 84,
+                  "cy": 288,
+                  "r": 22,
+                  "fill": "#000000"
+                },
+                {
+                  "type": "path",
+                  "d": "M53 360 L55 335 Q58 317 84 317 Q111 317 113 340 L116 380 Q115 397 96 397 L71 394 Q51 390 53 360 Z",
+                  "fill": "#000000"
+                },
+                {
+                  "type": "circle",
+                  "cx": 160,
+                  "cy": 249,
+                  "r": 24,
+                  "fill": "#000000"
+                },
+                {
+                  "type": "path",
+                  "d": "M126 377 L128 302 Q130 278 160 278 Q190 278 192 301 L194 387 Q178 403 149 399 Q126 397 126 377 Z",
+                  "fill": "#000000"
+                },
+                {
+                  "type": "circle",
+                  "cx": 240,
+                  "cy": 223,
+                  "r": 27,
+                  "fill": "#000000"
+                },
+                {
+                  "type": "path",
+                  "d": "M202 384 L204 284 Q206 257 240 257 Q274 257 276 284 L278 384 Q266 407 240 407 Q214 407 202 384 Z",
+                  "fill": "#000000"
+                },
+                {
+                  "type": "circle",
+                  "cx": 322,
+                  "cy": 249,
+                  "r": 24,
+                  "fill": "#000000"
+                },
+                {
+                  "type": "path",
+                  "d": "M289 387 L291 301 Q293 278 322 278 Q352 278 354 302 L356 377 Q356 397 333 399 Q304 403 289 387 Z",
+                  "fill": "#000000"
+                },
+                {
+                  "type": "circle",
+                  "cx": 397,
+                  "cy": 288,
+                  "r": 22,
+                  "fill": "#000000"
+                },
+                {
+                  "type": "path",
+                  "d": "M366 380 L368 340 Q370 317 397 317 Q423 317 426 335 L428 360 Q430 390 410 394 L385 397 Q366 397 366 380 Z",
+                  "fill": "#000000"
+                },
+                {
+                  "type": "path",
+                  "d": "M220 295 Q187 282 179 245 L168 208",
+                  "fill": "none",
+                  "stroke": "#000000",
+                  "strokeWidth": 21
+                },
+                {
+                  "type": "path",
+                  "d": "M267 295 Q300 270 315 227 L329 196",
+                  "fill": "none",
+                  "stroke": "#000000",
+                  "strokeWidth": 21
+                },
+                {
+                  "type": "path",
+                  "d": "M137 329 Q109 319 97 295 L75 262",
+                  "fill": "none",
+                  "stroke": "#000000",
+                  "strokeWidth": 16
+                },
+                {
+                  "type": "path",
+                  "d": "M345 329 Q373 319 384 295 L405 261",
+                  "fill": "none",
+                  "stroke": "#000000",
+                  "strokeWidth": 16
+                }
+              ],
+              "id": "crowd"
+            }
+          ],
+          "id": "brand-mark"
+        },
+        {
+          "type": "text",
+          "text": "أولتراس الموحدة",
+          "x": 600,
+          "y": 730,
+          "size": 98,
+          "fill": "#000000",
+          "weight": 950,
+          "anchor": "middle"
+        }
+      ]
+    },
+    {
+      "id": "logo-white",
+      "title": "الشعار أحادي اللون الأبيض",
+      "width": 1200,
+      "height": 930,
+      "background": "transparent",
+      "elements": [
+        {
+          "type": "group",
+          "transform": "translate(280 40) scale(1.32)",
+          "elements": [
+            {
+              "type": "group",
+              "transform": "",
+              "elements": [
+                {
+                  "type": "path",
+                  "d": "M244 272 L267 78",
+                  "fill": "none",
+                  "stroke": "#FFFFFF",
+                  "strokeWidth": 12
+                },
+                {
+                  "type": "path",
+                  "d": "M269 73 C312 35 357 99 419 59 L419 179 C359 216 316 151 269 191 Z",
+                  "fill": "none",
+                  "stroke": "#FFFFFF",
+                  "strokeWidth": 8
+                },
+                {
+                  "type": "image",
+                  "href": "assets/source/raam-logo-2021.svg",
+                  "x": 294,
+                  "y": 105,
+                  "width": 100,
+                  "height": 48,
+                  "preserveAspectRatio": "xMidYMid meet",
+                  "fillOverride": "#FFFFFF"
+                }
+              ],
+              "id": "flag"
+            },
+            {
+              "type": "group",
+              "transform": "",
+              "elements": [
+                {
+                  "type": "circle",
+                  "cx": 84,
+                  "cy": 288,
+                  "r": 22,
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "path",
+                  "d": "M53 360 L55 335 Q58 317 84 317 Q111 317 113 340 L116 380 Q115 397 96 397 L71 394 Q51 390 53 360 Z",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "circle",
+                  "cx": 160,
+                  "cy": 249,
+                  "r": 24,
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "path",
+                  "d": "M126 377 L128 302 Q130 278 160 278 Q190 278 192 301 L194 387 Q178 403 149 399 Q126 397 126 377 Z",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "circle",
+                  "cx": 240,
+                  "cy": 223,
+                  "r": 27,
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "path",
+                  "d": "M202 384 L204 284 Q206 257 240 257 Q274 257 276 284 L278 384 Q266 407 240 407 Q214 407 202 384 Z",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "circle",
+                  "cx": 322,
+                  "cy": 249,
+                  "r": 24,
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "path",
+                  "d": "M289 387 L291 301 Q293 278 322 278 Q352 278 354 302 L356 377 Q356 397 333 399 Q304 403 289 387 Z",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "circle",
+                  "cx": 397,
+                  "cy": 288,
+                  "r": 22,
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "path",
+                  "d": "M366 380 L368 340 Q370 317 397 317 Q423 317 426 335 L428 360 Q430 390 410 394 L385 397 Q366 397 366 380 Z",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "path",
+                  "d": "M220 295 Q187 282 179 245 L168 208",
+                  "fill": "none",
+                  "stroke": "#FFFFFF",
+                  "strokeWidth": 21
+                },
+                {
+                  "type": "path",
+                  "d": "M267 295 Q300 270 315 227 L329 196",
+                  "fill": "none",
+                  "stroke": "#FFFFFF",
+                  "strokeWidth": 21
+                },
+                {
+                  "type": "path",
+                  "d": "M137 329 Q109 319 97 295 L75 262",
+                  "fill": "none",
+                  "stroke": "#FFFFFF",
+                  "strokeWidth": 16
+                },
+                {
+                  "type": "path",
+                  "d": "M345 329 Q373 319 384 295 L405 261",
+                  "fill": "none",
+                  "stroke": "#FFFFFF",
+                  "strokeWidth": 16
+                }
+              ],
+              "id": "crowd"
+            }
+          ],
+          "id": "brand-mark"
+        },
+        {
+          "type": "text",
+          "text": "أولتراس الموحدة",
+          "x": 600,
+          "y": 730,
+          "size": 98,
+          "fill": "#FFFFFF",
+          "weight": 950,
+          "anchor": "middle"
+        }
+      ]
+    },
+    {
+      "id": "avatar",
+      "title": "صورة الحساب",
+      "width": 1080,
+      "height": 1080,
+      "background": "#006838",
+      "elements": [
+        {
+          "type": "circle",
+          "cx": 540,
+          "cy": 480,
+          "r": 368,
+          "fill": "#F7F8EF"
+        },
+        {
+          "type": "group",
+          "transform": "translate(201 170) scale(1.38)",
+          "elements": [
+            {
+              "type": "group",
+              "transform": "",
+              "elements": [
+                {
+                  "type": "path",
+                  "d": "M244 272 L267 78",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 12
+                },
+                {
+                  "type": "path",
+                  "d": "M269 73 C312 35 357 99 419 59 L419 179 C359 216 316 151 269 191 Z",
+                  "fill": "#F7F8EF",
+                  "stroke": "#006838",
+                  "strokeWidth": 8
+                },
+                {
+                  "type": "image",
+                  "href": "assets/source/raam-logo-2021.svg",
+                  "x": 294,
+                  "y": 105,
+                  "width": 100,
+                  "height": 48,
+                  "preserveAspectRatio": "xMidYMid meet"
+                }
+              ],
+              "id": "flag"
+            },
+            {
+              "type": "group",
+              "transform": "",
+              "elements": [
+                {
+                  "type": "circle",
+                  "cx": 84,
+                  "cy": 288,
+                  "r": 22,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M53 360 L55 335 Q58 317 84 317 Q111 317 113 340 L116 380 Q115 397 96 397 L71 394 Q51 390 53 360 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 160,
+                  "cy": 249,
+                  "r": 24,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M126 377 L128 302 Q130 278 160 278 Q190 278 192 301 L194 387 Q178 403 149 399 Q126 397 126 377 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 240,
+                  "cy": 223,
+                  "r": 27,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M202 384 L204 284 Q206 257 240 257 Q274 257 276 284 L278 384 Q266 407 240 407 Q214 407 202 384 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 322,
+                  "cy": 249,
+                  "r": 24,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M289 387 L291 301 Q293 278 322 278 Q352 278 354 302 L356 377 Q356 397 333 399 Q304 403 289 387 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 397,
+                  "cy": 288,
+                  "r": 22,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M366 380 L368 340 Q370 317 397 317 Q423 317 426 335 L428 360 Q430 390 410 394 L385 397 Q366 397 366 380 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M220 295 Q187 282 179 245 L168 208",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 21
+                },
+                {
+                  "type": "path",
+                  "d": "M267 295 Q300 270 315 227 L329 196",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 21
+                },
+                {
+                  "type": "path",
+                  "d": "M137 329 Q109 319 97 295 L75 262",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 16
+                },
+                {
+                  "type": "path",
+                  "d": "M345 329 Q373 319 384 295 L405 261",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 16
+                }
+              ],
+              "id": "crowd"
+            }
+          ],
+          "id": "brand-mark"
+        },
+        {
+          "type": "text",
+          "text": "أولتراس الموحدة",
+          "x": 540,
+          "y": 940,
+          "size": 88,
+          "fill": "#F7F8EF",
+          "weight": 950,
+          "anchor": "middle"
+        }
+      ]
+    },
+    {
+      "id": "01-introduction",
+      "title": "منشور تعريفي",
+      "width": 1080,
+      "height": 1350,
+      "background": "#F7F8EF",
+      "elements": [
+        {
+          "type": "text",
+          "text": "أولتراس الموحدة",
+          "x": 1000,
+          "y": 95,
+          "size": 30,
+          "fill": "#006838",
+          "weight": 900
+        },
+        {
+          "type": "rect",
+          "x": 80,
+          "y": 65,
+          "width": 12,
+          "height": 12,
+          "fill": "#B5F36B",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "text": "01 / تعريف",
+          "x": 120,
+          "y": 79,
+          "size": 19,
+          "fill": "#5C7467",
+          "weight": 600,
+          "anchor": "start",
+          "direction": "rtl"
+        },
+        {
+          "type": "rect",
+          "x": 806,
+          "y": 161,
+          "width": 194,
+          "height": 17,
+          "fill": "#B5F36B",
+          "rx": 9
+        },
+        {
+          "type": "text",
+          "text": "من نحن",
+          "x": 1000,
+          "y": 344,
+          "size": 158,
+          "fill": "#006838",
+          "weight": 950
+        },
+        {
+          "type": "text",
+          "text": "أولتراس",
+          "x": 1000,
+          "y": 515,
+          "size": 140,
+          "fill": "#006838",
+          "weight": 950
+        },
+        {
+          "type": "text",
+          "text": "الموحدة",
+          "x": 1000,
+          "y": 681,
+          "size": 151,
+          "fill": "#F7F8EF",
+          "weight": 950,
+          "stroke": "#006838",
+          "strokeWidth": 5.5
+        },
+        {
+          "type": "circle",
+          "cx": 90,
+          "cy": 1075,
+          "r": 300,
+          "fill": "#B5F36B"
+        },
+        {
+          "type": "group",
+          "transform": "translate(-37 737) scale(1.02)",
+          "elements": [
+            {
+              "type": "group",
+              "transform": "",
+              "elements": [
+                {
+                  "type": "path",
+                  "d": "M244 272 L267 78",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 12
+                },
+                {
+                  "type": "path",
+                  "d": "M269 73 C312 35 357 99 419 59 L419 179 C359 216 316 151 269 191 Z",
+                  "fill": "#F7F8EF",
+                  "stroke": "#006838",
+                  "strokeWidth": 8
+                },
+                {
+                  "type": "image",
+                  "href": "assets/source/raam-logo-2021.svg",
+                  "x": 294,
+                  "y": 105,
+                  "width": 100,
+                  "height": 48,
+                  "preserveAspectRatio": "xMidYMid meet"
+                }
+              ],
+              "id": "flag"
+            },
+            {
+              "type": "group",
+              "transform": "",
+              "elements": [
+                {
+                  "type": "circle",
+                  "cx": 84,
+                  "cy": 288,
+                  "r": 22,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M53 360 L55 335 Q58 317 84 317 Q111 317 113 340 L116 380 Q115 397 96 397 L71 394 Q51 390 53 360 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 160,
+                  "cy": 249,
+                  "r": 24,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M126 377 L128 302 Q130 278 160 278 Q190 278 192 301 L194 387 Q178 403 149 399 Q126 397 126 377 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 240,
+                  "cy": 223,
+                  "r": 27,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M202 384 L204 284 Q206 257 240 257 Q274 257 276 284 L278 384 Q266 407 240 407 Q214 407 202 384 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 322,
+                  "cy": 249,
+                  "r": 24,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M289 387 L291 301 Q293 278 322 278 Q352 278 354 302 L356 377 Q356 397 333 399 Q304 403 289 387 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 397,
+                  "cy": 288,
+                  "r": 22,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M366 380 L368 340 Q370 317 397 317 Q423 317 426 335 L428 360 Q430 390 410 394 L385 397 Q366 397 366 380 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M220 295 Q187 282 179 245 L168 208",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 21
+                },
+                {
+                  "type": "path",
+                  "d": "M267 295 Q300 270 315 227 L329 196",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 21
+                },
+                {
+                  "type": "path",
+                  "d": "M137 329 Q109 319 97 295 L75 262",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 16
+                },
+                {
+                  "type": "path",
+                  "d": "M345 329 Q373 319 384 295 L405 261",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 16
+                }
+              ],
+              "id": "crowd"
+            }
+          ],
+          "id": "brand-mark"
+        },
+        {
+          "type": "text",
+          "text": "مجموعة مناصرين",
+          "x": 1000,
+          "y": 884,
+          "size": 49,
+          "fill": "#073E2A",
+          "weight": 850
+        },
+        {
+          "type": "text",
+          "text": "مستقلة.",
+          "x": 1000,
+          "y": 955,
+          "size": 62,
+          "fill": "#006838",
+          "weight": 900
+        },
+        {
+          "type": "text",
+          "text": "مساحة للمحتوى والمشاركة.",
+          "x": 1000,
+          "y": 1040,
+          "size": 31,
+          "fill": "#5C7467",
+          "weight": 600
+        },
+        {
+          "type": "text",
+          "text": "اسم واحد. حضور يجمعنا.",
+          "x": 1000,
+          "y": 1098,
+          "size": 31,
+          "fill": "#5C7467",
+          "weight": 600
+        },
+        {
+          "type": "line",
+          "x1": 80,
+          "y1": 1245,
+          "x2": 1000,
+          "y2": 1245,
+          "stroke": "#D7E2D6",
+          "strokeWidth": 2
+        },
+        {
+          "type": "text",
+          "text": "مجموعة مناصرين مستقلة",
+          "x": 1000,
+          "y": 1297,
+          "size": 22,
+          "fill": "#5C7467",
+          "weight": 600
+        },
+        {
+          "type": "text",
+          "text": "ULTRAS / 01",
+          "x": 80,
+          "y": 1297,
+          "size": 20,
+          "fill": "#006838",
+          "weight": 600,
+          "direction": "ltr",
+          "anchor": "start"
+        }
+      ]
+    },
+    {
+      "id": "02-quote",
+      "title": "قالب تصريح موثق",
+      "width": 1080,
+      "height": 1350,
+      "background": "#F7F8EF",
+      "elements": [
+        {
+          "type": "text",
+          "text": "أولتراس الموحدة",
+          "x": 1000,
+          "y": 95,
+          "size": 30,
+          "fill": "#006838",
+          "weight": 900
+        },
+        {
+          "type": "rect",
+          "x": 80,
+          "y": 65,
+          "width": 12,
+          "height": 12,
+          "fill": "#B5F36B",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "text": "02 / تصريح",
+          "x": 120,
+          "y": 79,
+          "size": 19,
+          "fill": "#5C7467",
+          "weight": 600,
+          "anchor": "start",
+          "direction": "rtl"
+        },
+        {
+          "type": "text",
+          "text": "من الأرشيف",
+          "x": 1000,
+          "y": 237,
+          "size": 89,
+          "fill": "#006838",
+          "weight": 950
+        },
+        {
+          "type": "rect",
+          "x": 68,
+          "y": 305,
+          "width": 400,
+          "height": 540,
+          "fill": "#B5F36B",
+          "rx": 190
+        },
+        {
+          "type": "raw",
+          "svg": "<defs><clipPath id=\"portrait-mask\"><rect x=\"68\" y=\"305\" width=\"400\" height=\"540\" rx=\"190\"/></clipPath></defs>"
+        },
+        {
+          "type": "raw",
+          "svg": "<g clip-path=\"url(#portrait-mask)\">"
+        },
+        {
+          "type": "image",
+          "href": "assets/source/mansour-abbas-2022-ronen-horesh.jpg",
+          "x": 68,
+          "y": 305,
+          "width": 400,
+          "height": 540,
+          "preserveAspectRatio": "xMidYMid slice"
+        },
+        {
+          "type": "raw",
+          "svg": "</g>"
+        },
+        {
+          "type": "text",
+          "text": "“",
+          "x": 990,
+          "y": 365,
+          "size": 144,
+          "fill": "#B5F36B",
+          "weight": 900,
+          "direction": "ltr"
+        },
+        {
+          "type": "text",
+          "text": "هناك خلل بنيوي",
+          "x": 1000,
+          "y": 451,
+          "size": 58,
+          "fill": "#073E2A",
+          "weight": 850
+        },
+        {
+          "type": "text",
+          "text": "على مستوى",
+          "x": 1000,
+          "y": 535,
+          "size": 58,
+          "fill": "#073E2A",
+          "weight": 850
+        },
+        {
+          "type": "text",
+          "text": "السياسات وعلى",
+          "x": 1000,
+          "y": 619,
+          "size": 58,
+          "fill": "#073E2A",
+          "weight": 850
+        },
+        {
+          "type": "text",
+          "text": "مستوى أداء",
+          "x": 1000,
+          "y": 703,
+          "size": 58,
+          "fill": "#073E2A",
+          "weight": 850
+        },
+        {
+          "type": "text",
+          "text": "سلطات إنفاذ",
+          "x": 1000,
+          "y": 787,
+          "size": 58,
+          "fill": "#006838",
+          "weight": 900
+        },
+        {
+          "type": "text",
+          "text": "القانون.",
+          "x": 1000,
+          "y": 871,
+          "size": 58,
+          "fill": "#006838",
+          "weight": 900
+        },
+        {
+          "type": "rect",
+          "x": 80,
+          "y": 910,
+          "width": 110,
+          "height": 9,
+          "fill": "#B5F36B",
+          "rx": 5
+        },
+        {
+          "type": "text",
+          "text": "منصور عباس",
+          "x": 1000,
+          "y": 1006,
+          "size": 47,
+          "fill": "#006838",
+          "weight": 900
+        },
+        {
+          "type": "text",
+          "text": "جلسة للكنيست حول العنف والجريمة",
+          "x": 1000,
+          "y": 1066,
+          "size": 27,
+          "fill": "#5C7467",
+          "weight": 600
+        },
+        {
+          "type": "text",
+          "text": "المصدر: الكنيست  ·  19 يناير 2026",
+          "x": 1000,
+          "y": 1120,
+          "size": 27,
+          "fill": "#5C7467",
+          "weight": 600
+        },
+        {
+          "type": "text",
+          "text": "نموذج أرشيفي • راجع النص والسياق قبل النشر",
+          "x": 1000,
+          "y": 1168,
+          "size": 23,
+          "fill": "#5C7467",
+          "weight": 600
+        },
+        {
+          "type": "line",
+          "x1": 80,
+          "y1": 1245,
+          "x2": 1000,
+          "y2": 1245,
+          "stroke": "#D7E2D6",
+          "strokeWidth": 2
+        },
+        {
+          "type": "text",
+          "text": "مجموعة مناصرين مستقلة",
+          "x": 1000,
+          "y": 1297,
+          "size": 22,
+          "fill": "#5C7467",
+          "weight": 600
+        },
+        {
+          "type": "text",
+          "text": "ULTRAS / 02",
+          "x": 80,
+          "y": 1297,
+          "size": 20,
+          "fill": "#006838",
+          "weight": 600,
+          "direction": "ltr",
+          "anchor": "start"
+        },
+        {
+          "type": "text",
+          "text": "Photo: Ronen Horesh / Knesset Archives - CC BY-SA 4.0 - cropped",
+          "x": 80,
+          "y": 1208,
+          "size": 17,
+          "fill": "#5C7467",
+          "weight": 600,
+          "direction": "ltr",
+          "anchor": "start"
+        }
+      ]
+    },
+    {
+      "id": "03-comparison",
+      "title": "قالب مقارنة تصريحين",
+      "width": 1080,
+      "height": 1350,
+      "background": "#006838",
+      "elements": [
+        {
+          "type": "text",
+          "text": "أولتراس الموحدة",
+          "x": 1000,
+          "y": 95,
+          "size": 30,
+          "fill": "#F7F8EF",
+          "weight": 900
+        },
+        {
+          "type": "rect",
+          "x": 80,
+          "y": 65,
+          "width": 12,
+          "height": 12,
+          "fill": "#B5F36B",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "text": "03 / مقارنة",
+          "x": 120,
+          "y": 79,
+          "size": 19,
+          "fill": "#B5F36B",
+          "weight": 600,
+          "anchor": "start",
+          "direction": "rtl"
+        },
+        {
+          "type": "text",
+          "text": "تصريح",
+          "x": 1000,
+          "y": 277,
+          "size": 137,
+          "fill": "#F7F8EF",
+          "weight": 950
+        },
+        {
+          "type": "text",
+          "text": "وتصريح",
+          "x": 1000,
+          "y": 440,
+          "size": 137,
+          "fill": "#006838",
+          "weight": 950,
+          "stroke": "#F7F8EF",
+          "strokeWidth": 5.5
+        },
+        {
+          "type": "rect",
+          "x": 80,
+          "y": 518,
+          "width": 920,
+          "height": 6,
+          "fill": "#B5F36B",
+          "rx": 3
+        },
+        {
+          "type": "text",
+          "text": "الموضوع نفسه. السياق والتاريخ كاملان.",
+          "x": 1000,
+          "y": 595,
+          "size": 35,
+          "fill": "#F7F8EF",
+          "weight": 600
+        },
+        {
+          "type": "line",
+          "x1": 540,
+          "y1": 675,
+          "x2": 540,
+          "y2": 1070,
+          "stroke": "#5B8D70",
+          "strokeWidth": 2
+        },
+        {
+          "type": "text",
+          "text": "01",
+          "x": 1000,
+          "y": 712,
+          "size": 36,
+          "fill": "#B5F36B",
+          "weight": 800,
+          "direction": "ltr"
+        },
+        {
+          "type": "text",
+          "text": "02",
+          "x": 486,
+          "y": 712,
+          "size": 36,
+          "fill": "#B5F36B",
+          "weight": 800,
+          "direction": "ltr"
+        },
+        {
+          "type": "text",
+          "text": "نص التصريح",
+          "x": 1000,
+          "y": 802,
+          "size": 55,
+          "fill": "#F7F8EF",
+          "weight": 850
+        },
+        {
+          "type": "text",
+          "text": "الأول هنا",
+          "x": 1000,
+          "y": 878,
+          "size": 55,
+          "fill": "#F7F8EF",
+          "weight": 850
+        },
+        {
+          "type": "text",
+          "text": "نص التصريح",
+          "x": 486,
+          "y": 802,
+          "size": 55,
+          "fill": "#F7F8EF",
+          "weight": 850
+        },
+        {
+          "type": "text",
+          "text": "الثاني هنا",
+          "x": 486,
+          "y": 878,
+          "size": 55,
+          "fill": "#F7F8EF",
+          "weight": 850
+        },
+        {
+          "type": "text",
+          "text": "الاسم / الصفة",
+          "x": 1000,
+          "y": 984,
+          "size": 28,
+          "fill": "#F7F8EF",
+          "weight": 700
+        },
+        {
+          "type": "text",
+          "text": "الاسم / الصفة",
+          "x": 486,
+          "y": 984,
+          "size": 28,
+          "fill": "#F7F8EF",
+          "weight": 700
+        },
+        {
+          "type": "text",
+          "text": "المصدر / التاريخ",
+          "x": 1000,
+          "y": 1038,
+          "size": 24,
+          "fill": "#F7F8EF",
+          "weight": 600
+        },
+        {
+          "type": "text",
+          "text": "المصدر / التاريخ",
+          "x": 486,
+          "y": 1038,
+          "size": 24,
+          "fill": "#F7F8EF",
+          "weight": 600
+        },
+        {
+          "type": "text",
+          "text": "نصوص موضعية للتصميم • استبدلها بمصادر موثقة",
+          "x": 1000,
+          "y": 1170,
+          "size": 25,
+          "fill": "#B5F36B",
+          "weight": 600
+        },
+        {
+          "type": "line",
+          "x1": 80,
+          "y1": 1245,
+          "x2": 1000,
+          "y2": 1245,
+          "stroke": "#39634C",
+          "strokeWidth": 2
+        },
+        {
+          "type": "text",
+          "text": "مجموعة مناصرين مستقلة",
+          "x": 1000,
+          "y": 1297,
+          "size": 22,
+          "fill": "#F7F8EF",
+          "weight": 600
+        },
+        {
+          "type": "text",
+          "text": "ULTRAS / 03",
+          "x": 80,
+          "y": 1297,
+          "size": 20,
+          "fill": "#B5F36B",
+          "weight": 600,
+          "direction": "ltr",
+          "anchor": "start"
+        }
+      ]
+    },
+    {
+      "id": "04-important-news",
+      "title": "قالب خبر مهم",
+      "width": 1080,
+      "height": 1350,
+      "background": "#F7F8EF",
+      "elements": [
+        {
+          "type": "text",
+          "text": "أولتراس الموحدة",
+          "x": 1000,
+          "y": 95,
+          "size": 30,
+          "fill": "#006838",
+          "weight": 900
+        },
+        {
+          "type": "rect",
+          "x": 80,
+          "y": 65,
+          "width": 12,
+          "height": 12,
+          "fill": "#B5F36B",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "text": "04 / خبر",
+          "x": 120,
+          "y": 79,
+          "size": 19,
+          "fill": "#5C7467",
+          "weight": 600,
+          "anchor": "start",
+          "direction": "rtl"
+        },
+        {
+          "type": "rect",
+          "x": 80,
+          "y": 165,
+          "width": 240,
+          "height": 58,
+          "fill": "#B5F36B",
+          "rx": 29
+        },
+        {
+          "type": "text",
+          "text": "تحديث إخباري",
+          "x": 284,
+          "y": 206,
+          "size": 25,
+          "fill": "#073E2A",
+          "weight": 800
+        },
+        {
+          "type": "text",
+          "text": "خبر",
+          "x": 1000,
+          "y": 485,
+          "size": 241,
+          "fill": "#006838",
+          "weight": 950
+        },
+        {
+          "type": "text",
+          "text": "مهم",
+          "x": 1000,
+          "y": 731,
+          "size": 241,
+          "fill": "#F7F8EF",
+          "weight": 950,
+          "stroke": "#006838",
+          "strokeWidth": 5.5
+        },
+        {
+          "type": "rect",
+          "x": 79,
+          "y": 344,
+          "width": 29,
+          "height": 258,
+          "fill": "#006838",
+          "rx": 15
+        },
+        {
+          "type": "circle",
+          "cx": 94,
+          "cy": 657,
+          "r": 16,
+          "fill": "#006838"
+        },
+        {
+          "type": "text",
+          "text": "عنوان الخبر",
+          "x": 1000,
+          "y": 909,
+          "size": 80,
+          "fill": "#073E2A",
+          "weight": 900
+        },
+        {
+          "type": "text",
+          "text": "يُكتب هنا",
+          "x": 1000,
+          "y": 1010,
+          "size": 80,
+          "fill": "#073E2A",
+          "weight": 900
+        },
+        {
+          "type": "text",
+          "text": "ملخص دقيق للحدث في سطر واحد أو سطرين.",
+          "x": 1000,
+          "y": 1102,
+          "size": 31,
+          "fill": "#5C7467",
+          "weight": 600
+        },
+        {
+          "type": "text",
+          "text": "المصدر: [اسم الوسيلة]    التاريخ: [يوم / شهر]",
+          "x": 1000,
+          "y": 1179,
+          "size": 25,
+          "fill": "#5C7467",
+          "weight": 600
+        },
+        {
+          "type": "line",
+          "x1": 80,
+          "y1": 1245,
+          "x2": 1000,
+          "y2": 1245,
+          "stroke": "#D7E2D6",
+          "strokeWidth": 2
+        },
+        {
+          "type": "text",
+          "text": "مجموعة مناصرين مستقلة",
+          "x": 1000,
+          "y": 1297,
+          "size": 22,
+          "fill": "#5C7467",
+          "weight": 600
+        },
+        {
+          "type": "text",
+          "text": "ULTRAS / 04",
+          "x": 80,
+          "y": 1297,
+          "size": 20,
+          "fill": "#006838",
+          "weight": 600,
+          "direction": "ltr",
+          "anchor": "start"
+        }
+      ]
+    },
+    {
+      "id": "05-voting",
+      "title": "قالب التصويت",
+      "width": 1080,
+      "height": 1350,
+      "background": "#006838",
+      "elements": [
+        {
+          "type": "text",
+          "text": "أولتراس الموحدة",
+          "x": 1000,
+          "y": 95,
+          "size": 30,
+          "fill": "#F7F8EF",
+          "weight": 900
+        },
+        {
+          "type": "rect",
+          "x": 80,
+          "y": 65,
+          "width": 12,
+          "height": 12,
+          "fill": "#B5F36B",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "text": "05 / المشاركة",
+          "x": 120,
+          "y": 79,
+          "size": 19,
+          "fill": "#B5F36B",
+          "weight": 600,
+          "anchor": "start",
+          "direction": "rtl"
+        },
+        {
+          "type": "text",
+          "text": "ارفع نسبة",
+          "x": 1000,
+          "y": 265,
+          "size": 113,
+          "fill": "#006838",
+          "weight": 950,
+          "stroke": "#F7F8EF",
+          "strokeWidth": 5.5
+        },
+        {
+          "type": "text",
+          "text": "التصويت",
+          "x": 1000,
+          "y": 419,
+          "size": 144,
+          "fill": "#F7F8EF",
+          "weight": 950
+        },
+        {
+          "type": "circle",
+          "cx": 191,
+          "cy": 758,
+          "r": 300,
+          "fill": "#073E2A"
+        },
+        {
+          "type": "group",
+          "transform": "translate(259 510) rotate(-10 230 175)",
+          "elements": [
+            {
+              "type": "rect",
+              "x": 125,
+              "y": 0,
+              "width": 276,
+              "height": 348,
+              "fill": "#F7F8EF",
+              "rx": 24
+            },
+            {
+              "type": "text",
+              "text": "ع م",
+              "x": 263,
+              "y": 175,
+              "size": 131,
+              "fill": "#006838",
+              "weight": 950,
+              "anchor": "middle"
+            },
+            {
+              "type": "text",
+              "text": "القائمة العربية",
+              "x": 263,
+              "y": 247,
+              "size": 31,
+              "fill": "#006838",
+              "weight": 800,
+              "anchor": "middle"
+            },
+            {
+              "type": "text",
+              "text": "الموحدة",
+              "x": 263,
+              "y": 298,
+              "size": 42,
+              "fill": "#006838",
+              "weight": 900,
+              "anchor": "middle"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "transform": "translate(145 830)",
+          "elements": [
+            {
+              "type": "path",
+              "d": "M80 0 H652 Q685 0 692 28 L739 194 H0 L46 28 Q53 0 80 0 Z",
+              "fill": "#B5F36B"
+            },
+            {
+              "type": "rect",
+              "x": 171,
+              "y": 42,
+              "width": 393,
+              "height": 22,
+              "fill": "#073E2A",
+              "rx": 11
+            },
+            {
+              "type": "rect",
+              "x": 0,
+              "y": 150,
+              "width": 739,
+              "height": 165,
+              "fill": "#F7F8EF",
+              "rx": 35
+            },
+            {
+              "type": "image",
+              "href": "assets/source/raam-logo-2021.svg",
+              "x": 285,
+              "y": 191,
+              "width": 173,
+              "height": 66,
+              "preserveAspectRatio": "xMidYMid meet"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "صوت للقائمة العربية الموحدة",
+          "x": 1000,
+          "y": 1220,
+          "size": 49,
+          "fill": "#F7F8EF",
+          "weight": 900
+        },
+        {
+          "type": "line",
+          "x1": 80,
+          "y1": 1245,
+          "x2": 1000,
+          "y2": 1245,
+          "stroke": "#39634C",
+          "strokeWidth": 2
+        },
+        {
+          "type": "text",
+          "text": "مجموعة مناصرين مستقلة",
+          "x": 1000,
+          "y": 1297,
+          "size": 22,
+          "fill": "#F7F8EF",
+          "weight": 600
+        },
+        {
+          "type": "text",
+          "text": "ULTRAS / 05",
+          "x": 80,
+          "y": 1297,
+          "size": 20,
+          "fill": "#B5F36B",
+          "weight": 600,
+          "direction": "ltr",
+          "anchor": "start"
+        }
+      ]
+    },
+    {
+      "id": "06-story",
+      "title": "قصة عمودية",
+      "width": 1080,
+      "height": 1920,
+      "background": "#F7F8EF",
+      "elements": [
+        {
+          "type": "text",
+          "text": "أولتراس الموحدة",
+          "x": 1000,
+          "y": 95,
+          "size": 30,
+          "fill": "#006838",
+          "weight": 900
+        },
+        {
+          "type": "rect",
+          "x": 80,
+          "y": 65,
+          "width": 12,
+          "height": 12,
+          "fill": "#B5F36B",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "text": "06 / قصة",
+          "x": 120,
+          "y": 79,
+          "size": 19,
+          "fill": "#5C7467",
+          "weight": 600,
+          "anchor": "start",
+          "direction": "rtl"
+        },
+        {
+          "type": "text",
+          "text": "من نحن",
+          "x": 1000,
+          "y": 381,
+          "size": 157,
+          "fill": "#006838",
+          "weight": 950
+        },
+        {
+          "type": "text",
+          "text": "أولتراس",
+          "x": 1000,
+          "y": 588,
+          "size": 151,
+          "fill": "#006838",
+          "weight": 950
+        },
+        {
+          "type": "text",
+          "text": "الموحدة",
+          "x": 1000,
+          "y": 792,
+          "size": 163,
+          "fill": "#F7F8EF",
+          "weight": 950,
+          "stroke": "#006838",
+          "strokeWidth": 5.5
+        },
+        {
+          "type": "circle",
+          "cx": 537,
+          "cy": 1169,
+          "r": 361,
+          "fill": "#B5F36B"
+        },
+        {
+          "type": "group",
+          "transform": "translate(165 835) scale(1.52)",
+          "elements": [
+            {
+              "type": "group",
+              "transform": "",
+              "elements": [
+                {
+                  "type": "path",
+                  "d": "M244 272 L267 78",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 12
+                },
+                {
+                  "type": "path",
+                  "d": "M269 73 C312 35 357 99 419 59 L419 179 C359 216 316 151 269 191 Z",
+                  "fill": "#F7F8EF",
+                  "stroke": "#006838",
+                  "strokeWidth": 8
+                },
+                {
+                  "type": "image",
+                  "href": "assets/source/raam-logo-2021.svg",
+                  "x": 294,
+                  "y": 105,
+                  "width": 100,
+                  "height": 48,
+                  "preserveAspectRatio": "xMidYMid meet"
+                }
+              ],
+              "id": "flag"
+            },
+            {
+              "type": "group",
+              "transform": "",
+              "elements": [
+                {
+                  "type": "circle",
+                  "cx": 84,
+                  "cy": 288,
+                  "r": 22,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M53 360 L55 335 Q58 317 84 317 Q111 317 113 340 L116 380 Q115 397 96 397 L71 394 Q51 390 53 360 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 160,
+                  "cy": 249,
+                  "r": 24,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M126 377 L128 302 Q130 278 160 278 Q190 278 192 301 L194 387 Q178 403 149 399 Q126 397 126 377 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 240,
+                  "cy": 223,
+                  "r": 27,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M202 384 L204 284 Q206 257 240 257 Q274 257 276 284 L278 384 Q266 407 240 407 Q214 407 202 384 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 322,
+                  "cy": 249,
+                  "r": 24,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M289 387 L291 301 Q293 278 322 278 Q352 278 354 302 L356 377 Q356 397 333 399 Q304 403 289 387 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 397,
+                  "cy": 288,
+                  "r": 22,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M366 380 L368 340 Q370 317 397 317 Q423 317 426 335 L428 360 Q430 390 410 394 L385 397 Q366 397 366 380 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M220 295 Q187 282 179 245 L168 208",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 21
+                },
+                {
+                  "type": "path",
+                  "d": "M267 295 Q300 270 315 227 L329 196",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 21
+                },
+                {
+                  "type": "path",
+                  "d": "M137 329 Q109 319 97 295 L75 262",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 16
+                },
+                {
+                  "type": "path",
+                  "d": "M345 329 Q373 319 384 295 L405 261",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 16
+                }
+              ],
+              "id": "crowd"
+            }
+          ],
+          "id": "brand-mark"
+        },
+        {
+          "type": "text",
+          "text": "مجموعة مناصرين مستقلة",
+          "x": 540,
+          "y": 1551,
+          "size": 52,
+          "fill": "#073E2A",
+          "weight": 900,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "text": "مساحة للمحتوى والمشاركة.",
+          "x": 540,
+          "y": 1635,
+          "size": 36,
+          "fill": "#5C7467",
+          "weight": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 80,
+          "y": 1720,
+          "width": 920,
+          "height": 3,
+          "fill": "#D7E2D6",
+          "rx": 0
+        },
+        {
+          "type": "text",
+          "text": "أولتراس الموحدة",
+          "x": 1000,
+          "y": 1790,
+          "size": 30,
+          "fill": "#006838",
+          "weight": 900
+        },
+        {
+          "type": "text",
+          "text": "ULTRAS / 06",
+          "x": 80,
+          "y": 1790,
+          "size": 23,
+          "fill": "#006838",
+          "weight": 600,
+          "anchor": "start",
+          "direction": "ltr"
+        }
+      ]
+    },
+    {
+      "id": "07-speaker-lower-third",
+      "title": "شريط تعريف للموشن",
+      "width": 1920,
+      "height": 1080,
+      "background": "transparent",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 70,
+          "y": 755,
+          "width": 1780,
+          "height": 227,
+          "fill": "#006838",
+          "rx": 42
+        },
+        {
+          "type": "rect",
+          "x": 72,
+          "y": 755,
+          "width": 17,
+          "height": 227,
+          "fill": "#B5F36B",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "text": "اسم المتحدث هنا",
+          "x": 1780,
+          "y": 853,
+          "size": 62,
+          "fill": "#F7F8EF",
+          "weight": 900
+        },
+        {
+          "type": "text",
+          "text": "الصفة / المناسبة",
+          "x": 1780,
+          "y": 921,
+          "size": 35,
+          "fill": "#B5F36B",
+          "weight": 650
+        },
+        {
+          "type": "text",
+          "text": "أولتراس الموحدة",
+          "x": 142,
+          "y": 842,
+          "size": 35,
+          "fill": "#F7F8EF",
+          "weight": 900,
+          "anchor": "start"
+        },
+        {
+          "type": "text",
+          "text": "مجموعة مناصرين مستقلة",
+          "x": 142,
+          "y": 900,
+          "size": 23,
+          "fill": "#F7F8EF",
+          "weight": 600,
+          "anchor": "start"
+        }
+      ]
+    },
+    {
+      "id": "cover",
+      "title": "غلاف أفقي",
+      "width": 1920,
+      "height": 640,
+      "background": "#006838",
+      "elements": [
+        {
+          "type": "circle",
+          "cx": 355,
+          "cy": 315,
+          "r": 270,
+          "fill": "#F7F8EF"
+        },
+        {
+          "type": "group",
+          "transform": "translate(115 70) scale(1)",
+          "elements": [
+            {
+              "type": "group",
+              "transform": "",
+              "elements": [
+                {
+                  "type": "path",
+                  "d": "M244 272 L267 78",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 12
+                },
+                {
+                  "type": "path",
+                  "d": "M269 73 C312 35 357 99 419 59 L419 179 C359 216 316 151 269 191 Z",
+                  "fill": "#F7F8EF",
+                  "stroke": "#006838",
+                  "strokeWidth": 8
+                },
+                {
+                  "type": "image",
+                  "href": "assets/source/raam-logo-2021.svg",
+                  "x": 294,
+                  "y": 105,
+                  "width": 100,
+                  "height": 48,
+                  "preserveAspectRatio": "xMidYMid meet"
+                }
+              ],
+              "id": "flag"
+            },
+            {
+              "type": "group",
+              "transform": "",
+              "elements": [
+                {
+                  "type": "circle",
+                  "cx": 84,
+                  "cy": 288,
+                  "r": 22,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M53 360 L55 335 Q58 317 84 317 Q111 317 113 340 L116 380 Q115 397 96 397 L71 394 Q51 390 53 360 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 160,
+                  "cy": 249,
+                  "r": 24,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M126 377 L128 302 Q130 278 160 278 Q190 278 192 301 L194 387 Q178 403 149 399 Q126 397 126 377 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 240,
+                  "cy": 223,
+                  "r": 27,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M202 384 L204 284 Q206 257 240 257 Q274 257 276 284 L278 384 Q266 407 240 407 Q214 407 202 384 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 322,
+                  "cy": 249,
+                  "r": 24,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M289 387 L291 301 Q293 278 322 278 Q352 278 354 302 L356 377 Q356 397 333 399 Q304 403 289 387 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 397,
+                  "cy": 288,
+                  "r": 22,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M366 380 L368 340 Q370 317 397 317 Q423 317 426 335 L428 360 Q430 390 410 394 L385 397 Q366 397 366 380 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M220 295 Q187 282 179 245 L168 208",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 21
+                },
+                {
+                  "type": "path",
+                  "d": "M267 295 Q300 270 315 227 L329 196",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 21
+                },
+                {
+                  "type": "path",
+                  "d": "M137 329 Q109 319 97 295 L75 262",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 16
+                },
+                {
+                  "type": "path",
+                  "d": "M345 329 Q373 319 384 295 L405 261",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 16
+                }
+              ],
+              "id": "crowd"
+            }
+          ],
+          "id": "brand-mark"
+        },
+        {
+          "type": "text",
+          "text": "أولتراس",
+          "x": 1830,
+          "y": 260,
+          "size": 155,
+          "weight": 950,
+          "fill": "#F7F8EF"
+        },
+        {
+          "type": "text",
+          "text": "الموحدة",
+          "x": 1830,
+          "y": 446,
+          "size": 174,
+          "weight": 950,
+          "fill": "#006838",
+          "stroke": "#F7F8EF",
+          "strokeWidth": 5.5
+        },
+        {
+          "type": "text",
+          "text": "مجموعة مناصرين مستقلة",
+          "x": 1830,
+          "y": 565,
+          "size": 41,
+          "weight": 650,
+          "fill": "#B5F36B"
+        }
+      ]
+    },
+    {
+      "id": "logo-symbol",
+      "title": "رمز الجمهور والعلم",
+      "width": 700,
+      "height": 590,
+      "background": "transparent",
+      "elements": [
+        {
+          "type": "group",
+          "transform": "translate(50 5) scale(1.25)",
+          "elements": [
+            {
+              "type": "group",
+              "transform": "",
+              "elements": [
+                {
+                  "type": "path",
+                  "d": "M244 272 L267 78",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 12
+                },
+                {
+                  "type": "path",
+                  "d": "M269 73 C312 35 357 99 419 59 L419 179 C359 216 316 151 269 191 Z",
+                  "fill": "#F7F8EF",
+                  "stroke": "#006838",
+                  "strokeWidth": 8
+                },
+                {
+                  "type": "image",
+                  "href": "assets/source/raam-logo-2021.svg",
+                  "x": 294,
+                  "y": 105,
+                  "width": 100,
+                  "height": 48,
+                  "preserveAspectRatio": "xMidYMid meet"
+                }
+              ],
+              "id": "flag"
+            },
+            {
+              "type": "group",
+              "transform": "",
+              "elements": [
+                {
+                  "type": "circle",
+                  "cx": 84,
+                  "cy": 288,
+                  "r": 22,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M53 360 L55 335 Q58 317 84 317 Q111 317 113 340 L116 380 Q115 397 96 397 L71 394 Q51 390 53 360 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 160,
+                  "cy": 249,
+                  "r": 24,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M126 377 L128 302 Q130 278 160 278 Q190 278 192 301 L194 387 Q178 403 149 399 Q126 397 126 377 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 240,
+                  "cy": 223,
+                  "r": 27,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M202 384 L204 284 Q206 257 240 257 Q274 257 276 284 L278 384 Q266 407 240 407 Q214 407 202 384 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 322,
+                  "cy": 249,
+                  "r": 24,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M289 387 L291 301 Q293 278 322 278 Q352 278 354 302 L356 377 Q356 397 333 399 Q304 403 289 387 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "circle",
+                  "cx": 397,
+                  "cy": 288,
+                  "r": 22,
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M366 380 L368 340 Q370 317 397 317 Q423 317 426 335 L428 360 Q430 390 410 394 L385 397 Q366 397 366 380 Z",
+                  "fill": "#006838"
+                },
+                {
+                  "type": "path",
+                  "d": "M220 295 Q187 282 179 245 L168 208",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 21
+                },
+                {
+                  "type": "path",
+                  "d": "M267 295 Q300 270 315 227 L329 196",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 21
+                },
+                {
+                  "type": "path",
+                  "d": "M137 329 Q109 319 97 295 L75 262",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 16
+                },
+                {
+                  "type": "path",
+                  "d": "M345 329 Q373 319 384 295 L405 261",
+                  "fill": "none",
+                  "stroke": "#006838",
+                  "strokeWidth": 16
+                }
+              ],
+              "id": "crowd"
+            }
+          ],
+          "id": "brand-mark"
+        }
+      ]
+    }
+  ]
+}

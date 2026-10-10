@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>محرر أولتراس الموحدة</title>
+  <meta name="description" content="محرر محلي لقوالب أولتراس الموحدة: غيّر النصوص والصور وصدّر تصميمك.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='10' fill='%23006838'/%3E%3Ccircle cx='16' cy='10' r='4' fill='%23B5F36B'/%3E%3Cpath d='M8 25V20Q8 15 16 15T24 20V25Z' fill='%23F7F8EF'/%3E%3C/svg%3E">
+  <style>/*__STYLES__*/</style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand"><span class="brand-icon" aria-hidden="true">أ</span><div><h1>محرر أولتراس الموحدة</h1><p>من الفكرة إلى منشور جاهز.</p></div></div>
+    <div class="file-actions">
+      <button id="saveFile" class="button quiet" type="button">حفظ ملف التحرير</button>
+      <button id="loadFile" class="button quiet" type="button">فتح ملف تحرير</button>
+      <input id="importFile" type="file" accept=".json,application/json" hidden>
+    </div>
+  </header>
+  <div class="workspace">
+    <aside class="template-pane" aria-label="اختيار التصميم">
+      <div class="pane-heading"><h2>التصاميم</h2><span id="templateCount" class="count"></span></div>
+      <p class="pane-intro">اختر قالبك وابدأ التعديل</p>
+      <nav id="gallery" class="gallery" aria-label="قوالب الهوية"></nav>
+      <details class="help"><summary>كيف أستخدم المحرر؟</summary><p>اختر التصميم، املأ الحقول وارفع صورتك، ثم نزّل الصورة الجاهزة. استخدم «حفظ ملف التحرير» لنقل عملك إلى جهاز آخر.</p><p>الصور والنصوص تبقى على جهازك. لا يحتاج المحرر إلى اتصال بالإنترنت.</p></details>
+    </aside>
+    <section class="fields-pane" aria-labelledby="selectedTitle">
+      <div class="fields-top"><span class="step-label">01 / المحتوى</span><h2 id="selectedTitle">من الأرشيف</h2><p id="selectedDescription">اكتب محتواك، وستظهر النتيجة مباشرة.</p></div>
+      <form id="editorForm" novalidate>
+        <div id="fields"></div>
+        <details id="advancedSection" class="advanced"><summary>بقية النصوص والتفاصيل</summary><div id="extraFields"></div></details>
+      </form>
+      <div class="fields-bottom"><button id="resetBtn" class="button reset" type="button">استعادة القالب الأصلي</button><span id="saveStatus" role="status">جاهز للتعديل</span></div>
+    </section>
+    <main class="preview-pane" aria-label="معاينة التصميم">
+      <div class="preview-toolbar"><div><span class="step-label">02 / المعاينة</span><p id="canvasMeta" dir="ltr"></p></div><span class="live-tag"><i></i> معاينة مباشرة</span></div>
+      <div id="canvasViewport" class="canvas-viewport"><div id="preview" class="preview" aria-label="التصميم الحالي"></div></div>
+      <div id="overflowWarning" class="notice" role="alert" hidden></div>
+      <div class="export-bar"><label class="quality-label">جودة الصورة<select id="exportScale"><option value="1">الحجم الأصلي</option><option value="2">دقة مضاعفة ×2</option></select></label><button id="exportSvg" class="button secondary" type="button">تنزيل SVG</button><button id="exportPng" class="button primary" type="button">تنزيل الصورة PNG <span aria-hidden="true">↓</span></button></div>
+      <p class="export-hint">PNG للنشر · SVG للتعديل مع المصمم</p>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <script>/*__DATA__*/</script>
+  <script>/*__CORE__*/</script>
+  <script>/*__APP__*/</script>
+</body>
+</html>

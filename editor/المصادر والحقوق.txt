@@ -1,0 +1,25 @@
+المواد المضمّنة في قوالب المحرر
+
+الخط: Cairo
+Copyright 2009 The Cairo Project Authors (https://github.com/Gue3bara/Cairo)
+SIL Open Font License 1.1. النص الكامل للترخيص مضمّن في ملف HTML
+ومرفق باسم OFL-Cairo.txt في الحزمة.
+
+صورة منصور عباس التجريبية:
+Ronen Horesh / Knesset Archives / CC BY-SA 4.0
+https://commons.wikimedia.org/wiki/File:Mansour_Abbas_(R_H_4290).jpg
+https://creativecommons.org/licenses/by-sa/4.0/
+التعديل في القالب: اقتصاص. يشير الإسناد إلى مصدر الصورة، ولا يدل على
+تأييد المصور أو الأرشيف للمجموعة. عند استخدام الصورة أبقِ إسنادها
+ورابط المصدر والترخيص واذكر التعديلات. النسخ المعدلة من الصورة تخضع
+لشروط الترخيص المذكور. استبدال الصورة يفرّغ إسناد الصورة القديمة.
+
+المصدر التاريخي للتصريح الموجود في نموذج «من الأرشيف»:
+أخبار الكنيست — 19 يناير 2026
+https://m.knesset.gov.il/AR/News/PressReleases/Pages/press19012026_3.aspx
+
+العلامة داخل العلم: Raam logo 2021
+https://commons.wikimedia.org/wiki/File:Raam_logo_2021.svg
+هذه نسخة مرجعية مؤرخة 2021، وليست تأكيداً على النسخة الرسمية الحالية.
+
+النصوص والمصادر توضح أمثلة داخل القوالب؛ يمكن استبدالها بمحتواك.

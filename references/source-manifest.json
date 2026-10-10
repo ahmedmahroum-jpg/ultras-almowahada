@@ -1,0 +1,30 @@
+{
+  "project": "أولتراس الموحدة",
+  "purpose": "Design references for local inference; no model training or fine-tuning has been performed.",
+  "sources": [
+    {
+      "file": "green-identity-reference.png",
+      "origin": "User attachment codex-clipboard-d8202f48-b6b7-4ba4-b934-958224c364d6.png",
+      "role": "Primary color identity: green, white and black. Preserve the identity while softening angular geometry."
+    },
+    {
+      "file": "modern-turquoise-reference.png",
+      "origin": "User attachment codex-clipboard-eeff5629-c2a6-45ea-8efa-4e46a5fa190f.png",
+      "role": "Modern layout reference: rounded portrait cards, generous curved edges, clear hierarchy. Colors and party mark are not the requested identity."
+    },
+    {
+      "files": ["behance-breakdown-01.png", "behance-breakdown-02.png"],
+      "url": "https://www.behance.net/gallery/220671707/The-Breakdown-2020-Election-coverage",
+      "creator": "Ana Simões / The Breakdown, VICE News",
+      "role": "Editorial hierarchy, large display typography and image integration; a reference for the proposed motion system.",
+      "access": "Project page and selected image assets inspected in browser. Animated sequence not yet assessed."
+    },
+    {
+      "file": "canva-outline-type-reference.jpg",
+      "url": "https://www.canva.com/templates/EAEJDd_l2cM-blue-and-orange-campaign-posters/",
+      "creator": "Canva Creative Studio",
+      "role": "Alternate solid and outline lettering. Reinterpret with original Arabic typography and the approved green palette.",
+      "access": "Template preview inspected in browser; no Canva design created."
+    }
+  ]
+}

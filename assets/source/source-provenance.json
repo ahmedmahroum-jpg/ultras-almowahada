@@ -1,0 +1,68 @@
+{
+  "retrieved_on": "2026-10-08",
+  "portrait": {
+    "file": "mansour-abbas-2022-ronen-horesh.jpg",
+    "depicted_person": "Mansour Abbas / منصور عباس",
+    "photographed_on": "2022-11-15",
+    "width": 1600,
+    "height": 2400,
+    "bytes": 1670951,
+    "page_url": "https://commons.wikimedia.org/wiki/File:Mansour_Abbas_(R_H_4290).jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Mansour_Abbas_%28R_H_4290%29.jpg",
+    "credit": "Ronen Horesh / Knesset Archives / CC BY-SA 4.0",
+    "credit_ar": "تصوير: Ronen Horesh / أرشيف الكنيست — CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "usage_note": "Include credit, source and license link; indicate cropping or other changes. Adapted image contributions must carry the same or a compatible license. Attribution must not imply photographer or archive endorsement. Original downloaded without modification."
+  },
+  "verified_sample_quotes": [
+    {
+      "id": "abbas-accountability-2020",
+      "person": "منصور عباس",
+      "quote": "صحيح أن الكنيست تراقب عمل الحكومة لكن يحق للمواطن أن يراقب عمل السياسيين.",
+      "source": "أخبار الكنيست",
+      "publication_date": "2020-08-26",
+      "event_date": "2020-08-25",
+      "url": "https://main.knesset.gov.il/AR/News/PressReleases/Pages/press26082020_2.aspx",
+      "context": "تصريح في جلسة لجنة عن تنفيذ القرار الحكومي 922 واستغلال الميزانيات. التاريخ المعروض للنشر 26 أغسطس؛ النص يقول إن الجلسة عُقدت يوم أمس الثلاثاء.",
+      "sample_eyebrow": "من الأرشيف • مساءلة عامة",
+      "verification": "Full indexed source text with explicit publication date. Direct open returned an empty body."
+    },
+    {
+      "id": "abbas-public-safety-2026",
+      "person": "منصور عباس",
+      "quote": "هناك خلل بنيوي على مستوى السياسات وعلى مستوى أداء سلطات إنفاذ القانون.",
+      "source": "أخبار الكنيست",
+      "publication_date": "2026-01-19",
+      "event_date": "2026-01-19",
+      "url": "https://m.knesset.gov.il/AR/News/PressReleases/Pages/press19012026_3.aspx",
+      "context": "تصريح في جلسة 40 توقيعاً حول العنف والجريمة. نقد للسياسات وأداء إنفاذ القانون، وليس تقريراً مستقلاً يثبت الادعاء.",
+      "sample_eyebrow": "من الأرشيف • الأمن الشخصي",
+      "verification": "Full indexed official source with explicit date. Direct mobile open returned HTTP 474. Invisible zero-width characters removed only."
+    },
+    {
+      "id": "azzam-local-council-2025",
+      "person": "عبد الكريم عزام",
+      "identity_as_published": "وكيل القائمة الموحدة في بلدية الناصرة",
+      "quote": "نحن ضد المناكفات، ونريد فقط مصلحة الناصرة.",
+      "source": "راديو الناس",
+      "publication_date": "2025-04-24",
+      "publication_time_as_displayed": "08:36",
+      "url": "https://www.nasapp.net/article/syqocbdjgl",
+      "context": "مقابلة إذاعية أصلية حول أزمة بلدية الناصرة وجلسة الاستماع في وزارة الداخلية.",
+      "verification": "Full page and indexed text; do not assume any differently named social profile belongs to this person."
+    }
+  ],
+  "template_note": "Use explicit archive dates and source labels. Comparison layouts should be labeled two documented statements or use placeholders; the statements above do not establish a contradiction or a before/after change. Do not present old statements as breaking news.",
+  "additional_authored_article": {
+    "person": "عبد الكريم عزام",
+    "title": "الموحدة وسلوكها السياسي الحكيم والمبادر",
+    "url": "https://panet.com/story/3861740",
+    "publication_date": "2023-11-23",
+    "publication_time_as_displayed": "06:59:45",
+    "last_updated_as_displayed": "2023-11-23 11:02:00",
+    "attribution": "عبد الكريم عزام يكتب",
+    "image_credit_as_displayed": "عبد الكريم عزام - صورة شخصية",
+    "image_reuse_license": "No open license verified; not downloaded."
+  }
+}

@@ -1,0 +1,721 @@
+<!doctype html><html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Deployment Handoff</title><style>
+:root{color-scheme:light;--green:#006838;--deep:#073e2a;--lime:#b5f36b}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f3f5f1;color:#20372c;font:16px/1.75 system-ui,-apple-system,Segoe UI,Arial,sans-serif}header{padding:36px 5vw;background:var(--deep);color:white;display:flex;justify-content:space-between;align-items:center;gap:24px}header strong{font-size:24px}header small{display:block;color:var(--lime)}button{border:0;border-radius:8px;padding:12px 18px;background:var(--lime);color:var(--deep);font-weight:700;cursor:pointer}.layout{max-width:1500px;margin:auto;display:grid;grid-template-columns:270px minmax(0,1fr);gap:36px;padding:40px 32px}nav{position:sticky;top:20px;align-self:start;max-height:94vh;overflow:auto;font-size:13px}nav a{display:block;padding:8px 12px;border-bottom:1px solid #dce4d9;text-decoration:none}main{min-width:0;background:white;border:1px solid #dde5da;border-radius:16px;padding:40px 48px}h1{font-size:38px;line-height:1.2;margin-top:0}h2{font-size:25px;color:var(--green);margin-top:52px;padding-top:20px;border-top:3px solid var(--lime);scroll-margin-top:20px}h3{font-size:19px;margin-top:28px}a{color:var(--green);overflow-wrap:anywhere}p,li,td{overflow-wrap:anywhere}code{font:13px/1.6 Consolas,monospace;background:#eef3ea;padding:2px 5px;border-radius:4px}pre{overflow:auto;background:#102c22;color:#e6f4dd;border-radius:10px;padding:20px;white-space:pre;tab-size:4}pre code{background:none;padding:0;color:inherit}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #dce5d7;padding:12px 14px;text-align:left;vertical-align:top}th{background:#eaf2e3;color:var(--deep)}tr:nth-child(even){background:#fafcf8}.table-scroll{overflow-x:auto;margin:22px 0}details{margin:18px 0}summary{cursor:pointer;font-weight:700}.architecture{margin:24px 0;background:#f0f6e9;padding:24px;border-radius:12px}.flow{display:flex;flex-direction:column;align-items:center;gap:5px}.flow div{background:var(--deep);color:white;border-radius:9px;padding:10px 24px;text-align:center;min-width:65%}.flow span{color:var(--green);font-weight:bold}.branches{display:grid;gap:8px;margin-top:20px}.branches div{border-left:4px solid var(--green);padding:6px 12px;background:white}figcaption{font-size:13px;margin-top:18px;color:#536950}@media(max-width:900px){.layout{display:block;padding:16px}nav{position:static;max-height:250px;margin-bottom:20px}main{padding:24px 20px}h1{font-size:30px}header{padding:24px}.flow div{min-width:100%}}@media print{body{background:white;font-size:10pt}header,nav{display:none}.layout{display:block;padding:0}main{padding:0;border:0}h2{break-after:avoid}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f2f2f2;color:black;border:1px solid #ddd}table{font-size:9pt}.table-scroll{overflow:visible}tr{break-inside:avoid}a{color:inherit}details{display:none}}@page{size:A4;margin:16mm}
+</style></head><body><header><div><strong>Deployment handoff</strong><small>Static editor · Technical audit · 10 October 2026</small></div><button onclick="window.print()">Print / Save PDF</button></header><div class="layout"><nav aria-label="Contents"><a href="#section-1">1. System purpose and main user flows</a><a href="#section-2">2. Architecture</a><a href="#section-3">3. Stack, versions, package manager, and lockfile</a><a href="#section-4">4. Run locally, install, build, and actual audit results</a><a href="#section-5">5. Environment variables</a><a href="#section-6">6. LOCAL-MACHINE AUDIT</a><a href="#section-7">7. External accounts and services</a><a href="#section-8">8. Data, schema, migrations, and initialization</a><a href="#section-9">9. Static versus server requirements</a><a href="#section-10">10. Hosting fit and recommendation</a><a href="#section-11">11. Exact deployment checklist — Vercel</a><a href="#section-12">12. Code transfer and Git audit</a><a href="#section-13">13. Risks and blockers</a><a href="#section-14">14. Open questions only the author can answer</a></nav><main><h1>Deployment handoff</h1>
+<p>Audit date: 2026-10-10. Audience: the person deploying this project and their AI agent. All application paths below are relative to the repository root. Run commands from that root unless explicitly stated otherwise. <code>&lt;REPOSITORY_URL&gt;</code> and <code>&lt;DEPLOYMENT_URL&gt;</code> are placeholders, not known account details. Local user-directory names are deliberately omitted; <code>%USERPROFILE%</code> identifies the original Windows account&#39;s home directory.</p>
+<p><strong>Decision: deploy the existing editor as a static site on Vercel. No application server, database, AI service, or GPU is required. The first blocker is transfer: this Git repository has zero commits and zero tracked files. A clone alone currently contains none of the application.</strong> Evidence: <code>editor/build_editor.py</code>, <code>editor/app.js</code>, <code>editor/editor-core.js</code>, and the Git audit in section 12.</p>
+<p>This handoff describes the editor actually implemented in the repository. Local AI image-generation experiments and motion-export scripts are separate authoring tools, not features called by the editor. Their hosting requirements must not be silently added to this deployment.</p>
+<h2 id="section-1">1. System purpose and main user flows</h2>
+<p>The system is an Arabic, right-to-left visual-design editor for a predefined identity kit. It provides 13 templates, editable text and portrait fields, image positioning and scaling, a live SVG preview, browser-local draft saving, and downloadable PNG, SVG, and project JSON files. The distributable is one self-contained HTML file with embedded templates, images, font, CSS, and JavaScript. Evidence: <code>editor/build_editor.py:24</code>, <code>editor/template-fields.json</code>, <code>editor/app.js:3</code>, <code>editor/editor-shell.html</code>.</p>
+<p>Main flows:</p>
+<ol>
+<li>Open <code>/</code> or <code>/ultras-editor.html</code>, select a template, edit its exposed text fields, and inspect the preview (<code>editor/app.js</code>, <code>editor/template-fields.json</code>).</li>
+<li>Select a local PNG/JPEG/WebP, resize/reposition it, or restore the original image. Processing happens in browser memory, not on a server (<code>editor/app.js:139</code>, <code>editor/app.js:191</code>).</li>
+<li>Download PNG at original or doubled resolution, or SVG for further editing (<code>editor/editor-shell.html</code>, <code>editor/app.js:221</code>, <code>editor/editor-core.js:265</code>).</li>
+<li>Save the selected design as project JSON and import it later; automatic drafts remain in the current browser and origin (<code>editor/app.js:57</code>, <code>editor/app.js:228</code>).</li>
+<li>Separately, designers can use the static brand, scene, and motion files under <code>output/</code>. Those directories are not connected to an editor backend and are excluded from the default public deployment (<code>HANDOFF-AR.txt</code>, <code>scripts/export_motion_and_pdf.cjs</code>).</li>
+</ol>
+<h2 id="section-2">2. Architecture</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Implementation and connection</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Frontend</td>
+<td>Vanilla HTML/CSS/JavaScript, Arabic RTL, SVG editing, Canvas raster export; all bundled into one HTML file</td>
+<td><code>editor/editor-shell.html</code>, <code>editor/editor.css</code>, <code>editor/app.js</code>, <code>editor/editor-core.js</code></td>
+</tr>
+<tr>
+<td>Build-time packager</td>
+<td>Python reads template metadata, SVG/PNG assets, source portrait dimensions, and Cairo font; embeds them into HTML</td>
+<td><code>editor/build_editor.py:24</code></td>
+</tr>
+<tr>
+<td>Backend / API</td>
+<td>None in the editor. No API routes or server entry point identified</td>
+<td><code>editor/app.js</code>, <code>editor/editor-core.js</code>, <code>editor/build_editor.py</code></td>
+</tr>
+<tr>
+<td>Database</td>
+<td>No SQL/NoSQL database; browser <code>localStorage</code> only</td>
+<td><code>editor/app.js:3</code>, <code>editor/app.js:57</code>, <code>editor/app.js:65</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>None; every visitor who can fetch the deployed HTML can use it</td>
+<td><code>editor/editor-shell.html</code>, <code>editor/app.js</code></td>
+</tr>
+<tr>
+<td>File storage</td>
+<td>Bundled seed assets in HTML; uploaded images become data URLs in browser memory/localStorage; exports use browser downloads</td>
+<td><code>editor/build_editor.py</code>, <code>editor/app.js:139</code>, <code>editor/app.js:216</code></td>
+</tr>
+<tr>
+<td>Jobs / cron</td>
+<td>No production jobs or schedule definitions found; authoring scripts run manually</td>
+<td><code>scripts/</code>, <code>output/preflight/</code>, <code>output/generation/</code></td>
+</tr>
+<tr>
+<td>Webhooks / WebSockets</td>
+<td>None identified in frontend or authoring scripts; local AI scripts use HTTP requests/polling instead</td>
+<td><code>editor/app.js</code>, <code>editor/editor-core.js</code>, <code>output/generation/run_local_sdxl_comparison.py</code></td>
+</tr>
+<tr>
+<td>AI / LLM</td>
+<td>No editor calls. Separate Python scripts call local Ollama/Qwen, ComfyUI, and AUTOMATIC1111</td>
+<td><code>output/preflight/analyze_qwen_references.py:37</code>, <code>output/generation/run_local_sdxl_comparison.py:85</code>, <code>output/generation/run_local_sdxl_comparison.py:126</code></td>
+</tr>
+<tr>
+<td>Third-party APIs</td>
+<td>No editor API dependency. Reference/source links are attribution links, not required remote assets</td>
+<td><code>assets/source/source-provenance.json</code>, <code>references/source-manifest.json</code>, <code>editor/build_editor.py</code></td>
+</tr>
+<tr>
+<td>Static host</td>
+<td>Delivers the HTML and license; does not receive uploaded portraits or project JSON through application code</td>
+<td><code>editor/app.js:139</code>, <code>editor/app.js:216</code>, <code>editor/build_editor.py</code></td>
+</tr>
+</tbody></table></div>
+<figure class="architecture"><div class="flow"><div>Template assets + editor sources</div><span>↓</span><div>Python + Pillow · build_editor.py</div><span>↓</span><div>Self-contained HTML</div><span>↓</span><div>Vercel · static hosting</div><span>↓</span><div>Browser · SVG + Canvas</div></div><div class="branches"><div>Local images / project JSON → Browser</div><div>Browser ↔ localStorage drafts</div><div>Browser → PNG / SVG / JSON downloads</div></div><figcaption>Separate offline authoring: Ollama / Qwen, ComfyUI / SDXL, Playwright / Chrome, video export. These services are not website dependencies.</figcaption></figure><details><summary>Mermaid diagram source</summary><pre><code class="language-mermaid">flowchart TD
+    A[Template JSON + SVG/PNG + font + editor sources] --&gt; B[Python build_editor.py / Pillow]
+    B --&gt; C[editor/ultras-editor.html]
+    C --&gt; D[Vercel static hosting]
+    D --&gt; E[Browser: HTML / JS / SVG / Canvas]
+    F[User-selected local image or project JSON] --&gt; E
+    E &lt;--&gt; G[Browser localStorage: ultras-editor-v1]
+    E --&gt; H[Local downloads: PNG / SVG / JSON]
+    subgraph Authoring_only_not_website_runtime
+        I[Python generation scripts] --&gt; J[Local Ollama / Qwen]
+        I --&gt; K[Local ComfyUI / AUTOMATIC1111 / SDXL]
+        K --&gt; L[Generated image studies]
+        M[Node / Playwright / Chrome / Python AV] --&gt; N[Static scene / PDF / video exports]
+    end
+</code></pre></details>
+<p>The absence claims above are scoped to this repository&#39;s inspected source. Unrelated software or hidden scheduled tasks on the original PC are <strong>unverified</strong>.</p>
+<h2 id="section-3">3. Stack, versions, package manager, and lockfile</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Confirmed version / requirement</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Frontend language</td>
+<td>HTML5, CSS, modern JavaScript; no React/Next/Vue or bundler</td>
+<td><code>editor/editor-shell.html</code>, <code>editor/app.js</code>, <code>editor/editor-core.js</code></td>
+</tr>
+<tr>
+<td>Browser APIs</td>
+<td>SVG DOM, Canvas, Blob URLs, <code>document.fonts</code>, <code>localStorage</code>, <code>Object.hasOwn</code></td>
+<td><code>editor/app.js:28</code>, <code>editor/app.js:57</code>, <code>editor/editor-core.js:276</code></td>
+</tr>
+<tr>
+<td>Python</td>
+<td>Locally tested CPython <strong>3.12.14</strong>, Windows x64</td>
+<td>Version command in section 4; <code>editor/build_editor.py</code></td>
+</tr>
+<tr>
+<td>Python dependency</td>
+<td><strong>Pillow 12.3.0</strong>, sole non-standard-library import of the editor packager</td>
+<td><code>editor/build_editor.py:9</code>; local import/version check</td>
+</tr>
+<tr>
+<td>Python package manager</td>
+<td>Locally available <strong>pip 26.2.1</strong>; no requirements file or Python lockfile in repository</td>
+<td><code>editor/build_editor.py:9</code>; manifest inventory</td>
+</tr>
+<tr>
+<td>Node</td>
+<td>Locally installed <strong>v24.19.0</strong>; authoring/testing only, not editor runtime</td>
+<td><code>scripts/export_motion_and_pdf.cjs</code>, <code>editor/tests/smoke.cjs</code>; version command</td>
+</tr>
+<tr>
+<td>Playwright</td>
+<td>Locally installed <strong>1.62.1</strong> in the Codex runtime, not a repo dependency</td>
+<td><code>editor/tests/smoke.cjs:5</code>; package version inspection</td>
+</tr>
+<tr>
+<td>Chrome</td>
+<td>System Google Chrome executable; exact installed browser version <strong>unverified</strong></td>
+<td><code>editor/tests/smoke.cjs:37</code></td>
+</tr>
+<tr>
+<td>Font</td>
+<td>Bundled Cairo variable font and OFL license; font release number <strong>unverified</strong></td>
+<td><code>assets/fonts/Cairo.ttf</code>, <code>assets/fonts/OFL-Cairo.txt</code></td>
+</tr>
+<tr>
+<td>Other offline tooling</td>
+<td>PyAV for an old motion encoder; exact working version <strong>unverified</strong> and unnecessary for deployment</td>
+<td><code>scripts/encode_motion.py:3</code></td>
+</tr>
+<tr>
+<td>Node package manager / lockfile</td>
+<td>None declared. No <code>package.json</code>, <code>package-lock.json</code>, <code>yarn.lock</code>, or <code>pnpm-lock.yaml</code> found</td>
+<td>Root/file inventory; Node scripts use absolute <code>require()</code> paths</td>
+</tr>
+<tr>
+<td>Runtime version pin</td>
+<td>No <code>.nvmrc</code>, <code>.node-version</code>, Python version pin, or deployment configuration supplied</td>
+<td>Repository inventory</td>
+</tr>
+</tbody></table></div>
+<p>The versions above describe the inspected PC, not promised host defaults. The recommended production path copies an already-built HTML file and needs no Python or application npm dependencies.</p>
+<h2 id="section-4">4. Run locally, install, build, and actual audit results</h2>
+<h3>Normal commands for the recipient</h3>
+<p>Use Python 3.12 and run these from the repository root. These are recipient commands; the audit did not create a virtual environment or rewrite outputs.</p>
+<p>Windows PowerShell:</p>
+<pre><code class="language-powershell">py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install Pillow==12.3.0
+.\.venv\Scripts\python.exe -B editor/build_editor.py
+.\.venv\Scripts\python.exe -B -m http.server 8769 --bind 127.0.0.1 --directory editor
+</code></pre>
+<p>Linux/macOS, with <code>python3.12</code> installed:</p>
+<pre><code class="language-sh">python3.12 -m venv .venv
+.venv/bin/python -m pip install Pillow==12.3.0
+.venv/bin/python -B editor/build_editor.py
+.venv/bin/python -B -m http.server 8769 --bind 127.0.0.1 --directory editor
+</code></pre>
+<p>Open <code>http://127.0.0.1:8769/ultras-editor.html</code>. Stop the server with Ctrl+C. This is a local static file server, not an application backend. No dev/hot-reload script exists. Existing Windows launchers open the HTML directly without a server (<code>editor/افتح المحرر.cmd</code>, root <code>افتح محرر التصاميم.cmd</code>). There is no <code>npm install</code>, <code>npm run dev</code>, or <code>npm run build</code> script.</p>
+<p>If using the prebuilt bundle unchanged, skip the environment/install/build commands and serve <code>editor/ultras-editor.html</code> directly. The full rebuild additionally requires the asset allowlist in section 12.</p>
+<h3>Install actually executed in this audit</h3>
+<p>The exact executable was the original account&#39;s Codex Python, expressed without the account&#39;s personal directory name:</p>
+<pre><code class="language-powershell">$auditPython = Join-Path $env:USERPROFILE &#39;.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe&#39;
+&amp; $auditPython -B -m pip install --no-index --no-cache-dir --disable-pip-version-check Pillow==12.3.0
+</code></pre>
+<p>Result: <strong>exit 0</strong>. Output, with home/temporary paths redacted:</p>
+<pre><code class="language-text">Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: Pillow==12.3.0 in &lt;LOCAL_RUNTIME&gt;/Lib/site-packages (12.3.0)
+</code></pre>
+<p>pip also reported failure to remove four temporary directories named <code>pip-build-tracker-*</code>, <code>pip-unpack-*</code>, <code>pip-ephem-wheel-cache-*</code>, and <code>pip-install-*</code> under its sandbox temporary directory. No dependency was installed or upgraded, and no project dependency files were created. This checks the available dependency; it is <strong>not a clean-environment installation test</strong>. A clean install and public package-index availability remain <strong>unverified</strong>.</p>
+<h3>Production bundle build actually executed, preserving read-only code</h3>
+<p>An ordinary <code>python -B editor/build_editor.py</code> writes <code>editor/ultras-editor.html</code> and <code>editor/build-info.json</code> (<code>editor/build_editor.py:103</code>). Running it unmodified would violate the instruction to modify only this handoff. Instead, the complete existing <code>build()</code> was executed with only those two output writes intercepted in RAM. Reads, image processing, validation assertions, font embedding, and assembly all ran. Native Windows newline conversion was preserved, and both resulting byte arrays were compared with the existing files.</p>
+<p>Exact verification command, after setting <code>$auditPython</code> above:</p>
+<pre><code class="language-powershell">@&#39;
+import runpy, hashlib, io
+from pathlib import Path
+from unittest.mock import patch
+from types import SimpleNamespace
+root = Path.cwd()
+targets = {root/&#39;editor/ultras-editor.html&#39;, root/&#39;editor/build-info.json&#39;}
+saved = {}
+original_stat = Path.stat
+def capture(p, text, encoding=None, errors=None, newline=None):
+    if p not in targets:
+        raise RuntimeError(&#39;Unexpected write&#39;)
+    b = io.BytesIO()
+    f = io.TextIOWrapper(b, encoding=encoding or &#39;utf8&#39;, errors=errors, newline=newline)
+    n = f.write(text)
+    f.flush()
+    saved[p] = b.getvalue()
+    f.detach()
+    return n
+def vstat(p, *a, **kw):
+    if p in saved:
+        return SimpleNamespace(st_size=len(saved[p]))
+    return original_stat(p, *a, **kw)
+with patch.object(Path, &#39;write_text&#39;, capture), patch.object(Path, &#39;stat&#39;, vstat):
+    runpy.run_path(str(root/&#39;editor/build_editor.py&#39;), run_name=&#39;__main__&#39;)
+for p, b in saved.items():
+    print(p.relative_to(root).as_posix(), &#39;bytes=&#39;+str(len(b)),
+          &#39;byte_identical=&#39;+str(b == p.read_bytes()),
+          &#39;sha256=&#39;+hashlib.sha256(b).hexdigest())
+print(&#39;PASS: build executed with native newline handling; two output writes intercepted in RAM.&#39;)
+&#39;@ | &amp; $auditPython -B -
+</code></pre>
+<p>Actual final output, exit 0:</p>
+<pre><code class="language-text">Built ultras-editor.html: 13 templates, 4,275,678 bytes
+editor/ultras-editor.html bytes=4275678 byte_identical=True sha256=af3fa04294a1b04a2c2aa1d86f86f3caa2555fe103b666a04a29a16e8d07da80
+editor/build-info.json bytes=114 byte_identical=True sha256=0d81cbb3a14802d2d16b8c7defc9e59a8916430c012b1cd6e02b3746570ee924
+PASS: build executed with native newline handling; two output writes intercepted in RAM.
+</code></pre>
+<p>An earlier RAM capture encoded LF-only bytes and reported 4,274,940 bytes. Text comparison confirmed identical HTML after newline normalization. The final verification above corrected the interception to emulate real Windows writes; no source drift was found. Linux rebuilds can have different byte hashes because of line endings.</p>
+<p>Additional actual checks: <code>node --check editor/app.js</code> and <code>node --check editor/editor-core.js</code> exited 0; all three inline scripts in <code>editor/ultras-editor.html</code> parsed successfully through Node&#39;s <code>vm.Script</code>. Existing reports show 14/14 smoke checks and 7/7 crop checks with zero recorded browser errors/network calls (<code>editor/tests/results/smoke-report.json</code>, <code>editor/tests/results/crop/crop-report.json</code>). These browser reports are <strong>historical, not rerun in this audit</strong>: their scripts write screenshots, downloads, and reports, prohibited by the current file-write constraint. Browser execution on Vercel is <strong>unverified</strong>.</p>
+<p>The static staging command in section 11 has not been executed here because it creates <code>public/</code> files, also outside the allowed writes. Its input bundle was rebuilt and verified above. No remote deployment was attempted.</p>
+<h2 id="section-5">5. Environment variables</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Purpose</th>
+<th>Used at file:line</th>
+<th>Required / optional</th>
+<th>Example format</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>None — application defines no environment variables</td>
+<td>Editor configuration is embedded at build time</td>
+<td><code>editor/build_editor.py:24</code>, <code>editor/app.js:3</code></td>
+<td>Not applicable</td>
+<td>Not applicable</td>
+</tr>
+</tbody></table></div>
+<p>No <code>process.env</code>, <code>os.environ</code>, <code>getenv()</code>, or dotenv loading was found in the inspected application and utility code. No <code>.env</code> or <code>.env.example</code> exists, and no <code>.env.example</code> was created because it would advertise nonexistent configuration. The local AI URLs are hardcoded constants, not environment variables (<code>output/preflight/analyze_qwen_references.py:37</code>, <code>output/generation/run_local_sdxl_comparison.py:85</code>).</p>
+<p><code>USERPROFILE</code> in this document&#39;s Windows commands is an OS-provided path helper, not an application setting. Do not add AI keys, database URLs, or other secrets to the HTML or Vercel environment for this editor. Hosting account authentication belongs to the deployer&#39;s tooling, not application configuration.</p>
+<h2 id="section-6">6. LOCAL-MACHINE AUDIT</h2>
+<h3>Runtime and data outside the repository</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Dependency / data</th>
+<th>Location or evidence</th>
+<th>Production disposition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Browser drafts and user images</td>
+<td>Browser localStorage key <code>ultras-editor-v1</code>, scoped to the original origin/profile; <code>editor/app.js:3,57,65</code></td>
+<td><strong>Only user data needing migration for the editor.</strong> Count/size and physical browser database path are <strong>unverified</strong>; not in Git. Export manually as below.</td>
+</tr>
+<tr>
+<td>User-downloaded PNG/SVG/JSON</td>
+<td>Browser-selected download locations; <code>editor/app.js:216</code></td>
+<td>Files outside the repo and total size <strong>unverified</strong>. Copy privately if the owner needs them; do not publish by default.</td>
+</tr>
+<tr>
+<td>Codex Python/Pillow</td>
+<td><code>%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe</code></td>
+<td>Confirmed available; replace with normal Python/Pillow on another build machine. Not needed to serve prebuilt HTML.</td>
+</tr>
+<tr>
+<td>Codex Node/Playwright</td>
+<td><code>%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\</code>; hardcoded in <code>scripts/render_assets.py:8</code>, <code>scripts/export_motion_and_pdf.cjs:5</code>, <code>editor/tests/smoke.cjs:5</code></td>
+<td>Required only to rerun the current authoring/test scripts as written. Their absolute paths are not portable.</td>
+</tr>
+<tr>
+<td>System Chrome</td>
+<td><code>C:\Program Files\Google\Chrome\Application\chrome.exe</code>; <code>scripts/render_assets.py:10</code>, <code>editor/tests/smoke.cjs:37</code></td>
+<td>Offline rendering/test dependency only; no production browser executable needed.</td>
+</tr>
+<tr>
+<td>Aider launcher</td>
+<td><code>%USERPROFILE%\Documents\Codex\Tools\Aider\bin\aider.cmd</code>, exists, 106 bytes</td>
+<td>Development helper only. No frontend/build dependency on Aider; historical use noted in <code>HANDOFF-AR.txt</code>.</td>
+</tr>
+<tr>
+<td>Ollama models/Qwen</td>
+<td><code>%USERPROFILE%\.ollama\models</code> exists; exact model installation/size <strong>unverified</strong>. Script requests <code>qwen3.8:27b-q4_K_M</code></td>
+<td>Authoring only; no model transfer for static hosting. <code>output/preflight/analyze_qwen_references.py:10,37</code>.</td>
+</tr>
+<tr>
+<td>ComfyUI</td>
+<td><code>%USERPROFILE%\AI\ComfyUI</code> exists; installation version/total size <strong>unverified</strong></td>
+<td>Authoring only. <code>output/generation/run_local_sdxl_comparison.py:85</code>.</td>
+</tr>
+<tr>
+<td>SDXL checkpoint</td>
+<td><code>%USERPROFILE%\AI\models\checkpoints\sd_xl_base_1.0.safetensors</code>, confirmed <strong>6,938,078,334 bytes</strong></td>
+<td>Not in repo, not needed online. <code>output/generation/run_local_sdxl_comparison.py:12,13,58</code>.</td>
+</tr>
+<tr>
+<td>AUTOMATIC1111</td>
+<td>Local HTTP API expected; installation directory/version <strong>unverified</strong></td>
+<td>Authoring only. <code>output/generation/run_local_sdxl_comparison.py:126</code>.</td>
+</tr>
+<tr>
+<td>PyAV / native FFmpeg libraries</td>
+<td><code>scripts/encode_motion.py:3</code></td>
+<td>Offline video encoding only; working import/build <strong>unverified in this audit</strong>. Do not include in static deployment.</td>
+</tr>
+<tr>
+<td>SQLite/Postgres/MySQL/Mongo/Redis/Docker</td>
+<td>No application configuration, connection code, DB files, schema, compose file, or Dockerfile found</td>
+<td>Not required by inspected editor. Any unrelated PC installations are <strong>unverified</strong>.</td>
+</tr>
+<tr>
+<td>Scheduled tasks / cron</td>
+<td>No project scheduler definition found in <code>scripts/</code>, <code>editor/</code>, or generation utilities</td>
+<td>OS-level task inventory <strong>unverified</strong>; no evidence the editor depends on scheduled work.</td>
+</tr>
+</tbody></table></div>
+<p>Read-only connectivity probes found ports 8769, 11434, 8188, 7860, 5432, 3306, 27017, and 6379 unreachable from the audit environment. Sandbox/network isolation means this does <strong>not</strong> prove those services are absent or stopped on the PC. No model or service was started.</p>
+<h3>Hardcoded loopback and Windows paths</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Location</th>
+<th>Hardcoding and consequence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>output/preflight/analyze_qwen_references.py:37</code></td>
+<td><code>http://127.0.0.1:11434/api/chat</code>; only works where Ollama is local</td>
+</tr>
+<tr>
+<td><code>output/generation/run_local_sdxl_comparison.py:85,126</code></td>
+<td><code>http://127.0.0.1:8188</code> and <code>http://127.0.0.1:7860</code>; ComfyUI/A1111 authoring APIs</td>
+</tr>
+<tr>
+<td><code>output/generation/run_local_img2img.py:23,78,104</code></td>
+<td>Same local AI endpoints, including image upload</td>
+</tr>
+<tr>
+<td><code>output/generation/run_local_sdxl_comparison.py:12</code></td>
+<td>Original author&#39;s absolute Windows AI installation root; not portable</td>
+</tr>
+<tr>
+<td><code>scripts/render_assets.py:8,10</code></td>
+<td>Absolute Node and Chrome executable paths</td>
+</tr>
+<tr>
+<td><code>scripts/export_motion_and_pdf.cjs:5,9</code></td>
+<td>Absolute Playwright module and Chrome paths</td>
+</tr>
+<tr>
+<td><code>editor/tests/smoke.cjs:5,36,37</code>, <code>editor/tests/crop-smoke.cjs:5,16,17</code></td>
+<td>Absolute module, Chrome, and <code>%USERPROFILE%\AppData\Local\Temp\ultras-editor-downloads</code> paths</td>
+</tr>
+<tr>
+<td><code>editor/tests/download-debug.cjs:4,6,15</code></td>
+<td>Absolute download directory; test-only loopback server with dynamically assigned port</td>
+</tr>
+<tr>
+<td><code>editor/tests/preview.cjs:3,5</code>, <code>editor/palette-preview/render.cjs:1,4</code></td>
+<td>Absolute Playwright/Chrome paths</td>
+</tr>
+<tr>
+<td><code>tmp/motion-design-export/export.cjs</code>, <code>tmp/motion-design-export/encode-browser.cjs</code>, <code>tmp/render_social_kit.cjs</code></td>
+<td>Absolute local render dependencies; ancillary scripts, not deployed</td>
+</tr>
+<tr>
+<td><code>editor/افتح المحرر.cmd:2</code>, root <code>افتح محرر التصاميم.cmd:2</code></td>
+<td>Windows <code>start</code> command, but relative bundle path; not Linux entry points</td>
+</tr>
+</tbody></table></div>
+<p>No hardcoded localhost dependency was identified in <code>editor/app.js</code> or <code>editor/editor-core.js</code>. Port 8769 is a local serving convention, not a required production port. SVG/XML namespace URLs are identifiers, not HTTP dependencies.</p>
+<h3>Disk assets and transfer sizes</h3>
+<p>Measured file totals before this handoff; counts include generated artifacts and caches. All are currently untracked, not safely transferred by Git.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Repository path</th>
+<th align="right">Files</th>
+<th align="right">Bytes</th>
+<th>Treatment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>assets/</code></td>
+<td align="right">7</td>
+<td align="right">2,311,195</td>
+<td>Font, portrait, logo sources, provenance; keep in source transfer</td>
+</tr>
+<tr>
+<td><code>editor/</code></td>
+<td align="right">56</td>
+<td align="right">11,868,280</td>
+<td>Includes app, bundle, tests, comparisons, and results; deploy only allowlisted bundle/license</td>
+</tr>
+<tr>
+<td><code>output/</code></td>
+<td align="right">128</td>
+<td align="right">65,107,565</td>
+<td>Includes build inputs, generated media and AI studies; <strong>do not globally discard this directory</strong></td>
+</tr>
+<tr>
+<td><code>references/</code></td>
+<td align="right">6</td>
+<td align="right">1,551,277</td>
+<td>Design references; not runtime dependencies</td>
+</tr>
+<tr>
+<td><code>scripts/</code></td>
+<td align="right">13</td>
+<td align="right">172,683</td>
+<td>Offline authoring scripts plus cache files; not runtime dependencies</td>
+</tr>
+<tr>
+<td><code>tmp/</code></td>
+<td align="right">374</td>
+<td align="right">33,846,282</td>
+<td>Render frames and scratch scripts; not needed for the editor</td>
+</tr>
+<tr>
+<td><code>editor/ultras-editor.html</code></td>
+<td align="right">1</td>
+<td align="right">4,275,678</td>
+<td>Production bundle, required</td>
+</tr>
+<tr>
+<td>Editor rebuild asset allowlist</td>
+<td align="right">29</td>
+<td align="right">16,198,650</td>
+<td>Font/license, portrait, and 26 template SVG/PNG files; section 12</td>
+</tr>
+</tbody></table></div>
+<p>There are no server DB rows or registered users to export in the implemented application (<code>editor/app.js</code>). Existing browser draft volume is <strong>unverified</strong>, not zero. To move drafts:</p>
+<ol>
+<li>On the original PC, open the same browser profile and exact editor origin used for editing. <code>file://</code>, <code>http://127.0.0.1:8769</code>, <code>http://localhost:8769</code>, and a new HTTPS host do not share storage.</li>
+<li>Select each template with wanted changes and click <strong>حفظ ملف التحرير</strong>. This exports the selected design only, including its embedded image and crop data (<code>editor/app.js:228</code>). Repeat for every wanted draft.</li>
+<li>Transfer those JSON files privately. On the deployed editor use <strong>فتح ملف تحرير</strong> to import each. Do not commit user drafts, images, or exports to the public site.</li>
+<li>For a size-only audit, the owner can run this in DevTools on the old origin without printing content:</li>
+</ol>
+<pre><code class="language-js">(() =&gt; {
+  const raw = localStorage.getItem(&#39;ultras-editor-v1&#39;);
+  return {utf8Bytes: raw ? new Blob([raw]).size : 0,
+          draftCount: raw ? Object.keys(JSON.parse(raw).drafts || {}).length : 0};
+})()
+</code></pre>
+<p>UTF-8 size is a transfer estimate, not a measurement of browser storage quota consumption. No author-browser storage was read during this audit.</p>
+<h2 id="section-7">7. External accounts and services</h2>
+<p>For the recommended deployment, obtain a Vercel account/team with project creation permission and access to the eventual Git repository. The remote repository URL, owner, billing plan, and authorized deployer are <strong>unverified</strong>. A custom domain is optional; DNS control is needed only if the author chooses one. No application API key, database host, transactional email, payment processor, object-upload service, or AI account is required by the inspected frontend (<code>editor/app.js</code>, <code>editor/editor-core.js</code>).</p>
+<p>Vercel&#39;s static-hosting configuration is documented at <a href="https://vercel.com/docs/builds/configure-a-build">Configuring a Build</a>. Account eligibility, plan pricing, and deployment permissions were not tested. For AWS instead, obtain an AWS account/IAM permissions for S3 and CloudFront, plus DNS/ACM if using a custom domain; those are hosting resources, not application integrations.</p>
+<h2 id="section-8">8. Data, schema, migrations, and initialization</h2>
+<p>There is no production database to create and no migrations or seed command. A first load creates browser-local state from embedded template defaults (<code>editor/app.js:12,20</code>, <code>editor/build_editor.py:24</code>). The source seed definitions are <code>editor/template-fields.json</code> and the 13 template asset pairs under <code>output/identity/</code>.</p>
+<p>The browser-state shape is:</p>
+<pre><code class="language-text">{ version: 1, selectedId, drafts: { [templateId]: { values, images, crop } } }
+</code></pre>
+<p>The downloadable/importable project shape is:</p>
+<pre><code class="language-text">{ format: &quot;ultras-design&quot;, version: 1, templateId, values, images, crop }
+</code></pre>
+<p>Evidence: <code>editor/app.js:12,20,24,230</code>. <code>values</code> contains text fields, <code>images</code> contains validated raster data URLs, and <code>crop</code> contains zoom/offset/dimension metadata. Imports require version 1 and a recognized template. There is no multi-user sync or account linkage. Import limits include a 12 MiB JSON file, validated image formats, and text length constraints (<code>editor/app.js:24</code>, <code>editor/app.js:237</code>). Changing template IDs or the saved-data format requires an explicit migration design; none is implemented.</p>
+<h2 id="section-9">9. Static versus server requirements</h2>
+<p><strong>The production editor is pure static content.</strong> <code>editor/build_editor.py</code> embeds CSS, three script blocks, font, SVGs, and thumbnails into <code>editor/ultras-editor.html</code>; <code>editor/app.js</code> reads files locally and downloads Blobs; <code>editor/editor-core.js</code> renders via browser Canvas. There are no serverless functions to deploy.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Part requiring a process</th>
+<th>Needed for production editor?</th>
+<th>Proof</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Static HTTP/HTTPS hosting</td>
+<td>Yes, supplied by the chosen host</td>
+<td><code>editor/ultras-editor.html</code></td>
+</tr>
+<tr>
+<td>Python HTTP server</td>
+<td>No; development convenience only</td>
+<td>Section 4 command; existing launchers work without it</td>
+</tr>
+<tr>
+<td>Python build process</td>
+<td>No persistent server; optional pre-deployment build only</td>
+<td><code>editor/build_editor.py</code></td>
+</tr>
+<tr>
+<td>Ollama, ComfyUI, A1111</td>
+<td>No; needed only to rerun the optional AI-authoring experiments</td>
+<td><code>output/preflight/analyze_qwen_references.py:37</code>, <code>output/generation/run_local_sdxl_comparison.py:85,126</code></td>
+</tr>
+<tr>
+<td>Playwright/Chrome and video encoder</td>
+<td>No; one-shot offline media generation</td>
+<td><code>scripts/export_motion_and_pdf.cjs</code>, <code>scripts/encode_motion.py</code></td>
+</tr>
+</tbody></table></div>
+<p>Putting the AI scripts on a static host will not turn them into callable APIs. Exposing them as online features would be a separate application project requiring API implementation, access control, storage, and GPU/runtime planning.</p>
+<h2 id="section-10">10. Hosting fit and recommendation</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Works for current code?</th>
+<th>What breaks / is not provided</th>
+<th>Required setup</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vercel static project</td>
+<td><strong>Yes; recommended</strong></td>
+<td>Does not run the optional local GPU programs; does not provide user draft synchronization. Neither is an implemented editor feature.</td>
+<td>Deploy only the staged bundle/license. Framework <code>Other</code>; exact settings in section 11.</td>
+</tr>
+<tr>
+<td>AWS S3 + CloudFront, static only</td>
+<td><strong>Yes</strong></td>
+<td>No Python/Node jobs or AI services execute there; no user-data API.</td>
+<td>Private S3 origin, CloudFront origin access control, default root <code>index.html</code>, HTTPS, content types, upload and cache invalidation process.</td>
+</tr>
+<tr>
+<td>AWS architecture this code actually needs</td>
+<td><strong>The same S3 + CloudFront static architecture</strong></td>
+<td>No evidence justifies EC2, ECS, Lambda, RDS, or a GPU for the editor. Offline AI generation remains offline.</td>
+<td>Same static setup above; do not provision a compute/database tier merely because Python scripts exist.</td>
+</tr>
+</tbody></table></div>
+<p><strong>Can S3 alone host it? Yes, the editor&#39;s static files can run from an S3 website endpoint.</strong> However, S3 website endpoints do not support HTTPS; use CloudFront for the recommended HTTPS website. S3 alone cannot execute the separate authoring scripts. See <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteEndpoints.html">AWS website endpoints</a>.</p>
+<p><strong>Recommend Vercel</strong> because the deployable artifact is one self-contained HTML file and Vercel needs fewer hosting components to configure than S3/CloudFront/IAM. This is a simplicity recommendation, not a measured cost comparison. Vercel supports serving static HTML/CSS/JS directly and custom output directories (<a href="https://vercel.com/docs/builds/configure-a-build">build configuration</a>). Application evidence: <code>editor/build_editor.py</code>, <code>editor/build-info.json</code>.</p>
+<h2 id="section-11">11. Exact deployment checklist — Vercel</h2>
+<p>The following are instructions for the authorized deployer; this audit did not upload, commit, or deploy anything.</p>
+<ol>
+<li><p><strong>Resolve transfer first.</strong> Obtain a source commit or a reviewed file archive containing section 12&#39;s allowlist. The current original Git repository has no commit to clone. If a remote is later provided, run <code>git clone &lt;REPOSITORY_URL&gt;</code> and change directory to that checkout. The actual URL is <strong>unverified</strong>. Do not assume the original PC&#39;s files are available remotely.</p>
+</li>
+<li><p>Confirm <code>editor/ultras-editor.html</code> and <code>assets/fonts/OFL-Cairo.txt</code> exist. For the audited bundle, run:</p>
+<pre><code class="language-sh">node -e &quot;const fs=require(&#39;fs&#39;),c=require(&#39;crypto&#39;);const b=fs.readFileSync(&#39;editor/ultras-editor.html&#39;);console.log(b.length,c.createHash(&#39;sha256&#39;).update(b).digest(&#39;hex&#39;))&quot;
+</code></pre>
+<p>Expected: <code>4275678 af3fa04294a1b04a2c2aa1d86f86f3caa2555fe103b666a04a29a16e8d07da80</code>. If line endings were normalized during transfer, rebuild from source using section 4 and verify functionality; do not silently assume a content change is harmless.</p>
+</li>
+<li><p>Import the reviewed repository into Vercel. Set <strong>Root Directory</strong> to the repository root (not <code>editor</code>). Set <strong>Framework Preset</strong> to <strong>Other</strong>. No environment variables are needed.</p>
+</li>
+<li><p>Override <strong>Install Command</strong> with this exact no-dependency command:</p>
+<pre><code class="language-sh">node -e &quot;console.log(&#39;No application dependencies to install; deploying verified static bundle&#39;)&quot;
+</code></pre>
+</li>
+<li><p>Override <strong>Build Command</strong> with:</p>
+<pre><code class="language-sh">node -e &quot;const fs=require(&#39;fs&#39;);fs.mkdirSync(&#39;public&#39;,{recursive:true});fs.copyFileSync(&#39;editor/ultras-editor.html&#39;,&#39;public/index.html&#39;);fs.copyFileSync(&#39;editor/ultras-editor.html&#39;,&#39;public/ultras-editor.html&#39;);fs.copyFileSync(&#39;assets/fonts/OFL-Cairo.txt&#39;,&#39;public/OFL-Cairo.txt&#39;);console.log(&#39;Staged editor at / and /ultras-editor.html&#39;)&quot;
+</code></pre>
+<p>This is static release staging, not a source rebuild. It deliberately publishes only two copies of the standalone HTML plus the font license. Do not use <code>cp -r . public</code> or publish the entire <code>editor/</code> directory. The current checkout contains no <code>public/</code>; if the received checkout does, inspect it and ensure the final directory contains only the three intended files.</p>
+</li>
+<li><p>Set <strong>Output Directory</strong> to <code>public</code>. Leave development-command configuration unused. These settings avoid Python dependencies and hardcoded authoring paths during cloud deployment. No configuration file has been created by this audit.</p>
+</li>
+<li><p>Deploy a preview. Expected build log: <code>Staged editor at / and /ultras-editor.html</code>. Treat that output as <strong>expected</strong>, not a recorded cloud result. Inspect the static output list: <code>index.html</code>, <code>ultras-editor.html</code>, <code>OFL-Cairo.txt</code> only. Do not expose histories, test JSON, images from user drafts, model records, or the handoff itself.</p>
+</li>
+<li><p>On the preview URL, check both <code>/</code> and <code>/ultras-editor.html</code>. Check all 13 template selections, edit a text field, upload a non-sensitive test image, test 20%–300% zoom, download PNG at both resolutions and SVG, save JSON, reload, and import JSON. Confirm the export is legible in Arabic and the image is positioned correctly. These are acceptance checks for the deployer, not tests already performed online.</p>
+</li>
+<li><p>In browser DevTools, ensure editor actions make no AI/API/upload requests. Host infrastructure may add its own requests; distinguish those from <code>editor/app.js</code>. Verify no frontend exceptions. Use the stable final domain for draft storage; preview deployment origins have separate localStorage.</p>
+</li>
+<li><p>Promote the tested deployment to production in Vercel. If a custom domain is required, attach the author-approved domain in Vercel and apply the exact DNS records Vercel provides. Domain name and DNS records are <strong>unverified</strong>; do not invent them. Recheck HTTPS and exports on that final domain.</p>
+</li>
+<li><p>Migrate desired drafts using section 6. Record the deployment URL and source commit in the receiving team&#39;s release record. Retain the previous verified bundle/deployment for rollback; do not delete or overwrite original user drafts.</p>
+</li>
+</ol>
+<p>For future template edits, run the Python source build first and transfer the resulting <code>editor/ultras-editor.html</code>; the Vercel staging command does not detect stale source changes. <code>editor/build_editor.py</code> is the authoritative packager. Vercel configuration mechanism: <a href="https://vercel.com/docs/builds/configure-a-build">Configuring a Build</a>.</p>
+<h2 id="section-12">12. Code transfer and Git audit</h2>
+<p>Commands actually run: <code>git status --short --branch</code>, <code>git ls-files --stage</code>, <code>git log -1 --oneline</code>, <code>git status --ignored --short</code>, and <code>git check-ignore</code> against the bundle, asset, <code>.env</code>, <code>node_modules</code>, and a hypothetical SQLite filename.</p>
+<p>Results:</p>
+<pre><code class="language-text">## No commits yet on master
+?? .aider.chat.history.md
+?? HANDOFF-AR.txt
+?? assets/
+?? editor/
+?? output/
+?? references/
+?? scripts/
+?? tmp/
+?? [root Windows launcher]
+</code></pre>
+<p><code>git ls-files --stage</code> returned no entries. <code>git log -1 --oneline</code> reported <code>fatal: your current branch &#39;master&#39; does not have any commits yet</code>. The root Windows launcher is <code>افتح محرر التصاميم.cmd</code>. After this task, <code>DEPLOYMENT_HANDOFF.md</code> is also untracked. No commits, pushes, staging, or code modifications were performed.</p>
+<p><strong>This is a Git repository, but nothing needed to build is committed.</strong> No <code>.gitignore</code> exists; <code>.git/info/exclude</code> contains only template comments. The checked paths were not ignored. Thus secrets, <code>node_modules</code>, virtual environments, generated output, local databases, test artifacts, and histories are <strong>not correctly excluded by project rules</strong>. This task did not change ignore rules. Do not use <code>git add .</code> before reviewing the transfer.</p>
+<p>Minimum prebuilt deployment transfer:</p>
+<pre><code class="language-text">editor/ultras-editor.html
+assets/fonts/OFL-Cairo.txt
+DEPLOYMENT_HANDOFF.md
+</code></pre>
+<p>For a maintainable source rebuild, include these additional files:</p>
+<pre><code class="language-text">editor/build_editor.py
+editor/editor-shell.html
+editor/editor.css
+editor/editor-core.js
+editor/app.js
+editor/template-fields.json
+editor/build-info.json
+assets/fonts/Cairo.ttf
+assets/source/mansour-abbas-2022-ronen-horesh.jpg
+assets/source/source-provenance.json
+assets/source/raam-logo-provenance.json
+editor/المصادر والحقوق.txt
+</code></pre>
+<p>Also include <strong>both <code>.svg</code> and <code>.png</code></strong> for every following basename under <code>output/identity/</code> (26 files total):</p>
+<pre><code class="language-text">01-introduction
+02-quote
+03-comparison
+04-important-news
+05-voting
+06-story
+07-speaker-lower-third
+avatar
+cover
+logo-black
+logo-primary
+logo-symbol
+logo-white
+</code></pre>
+<p>These are build inputs despite residing in <code>output/</code>: <code>editor/build_editor.py:29</code> reads the SVG and <code>editor/build_editor.py:42</code> reads its PNG thumbnail source. <code>editor/template-fields.json</code> also references the portrait&#39;s <code>defaultAsset</code>. Ignoring all <code>output/</code> without preserving these files will break rebuilds. There are no ignored-but-required files under current project ignore rules; all required files are simply untracked. Transfer permissions and final repository remote are <strong>unverified</strong>.</p>
+<p>For original identity regeneration, additionally preserve <code>scripts/build_identity.py</code>, <code>scripts/identity_spec.json</code>, <code>assets/source/raam-logo-2021.svg</code>, and the other scripts/assets referenced by <code>scripts/render_assets.py</code>. That broader pipeline is not needed for the verified editor build and still has local absolute-path dependencies.</p>
+<p>Keep <code>.aider.chat.history.md</code>, <code>tmp/</code>, <code>editor/tests/results/</code>, browser draft exports, and private working material out of the public web output. Review them before any source transfer; their personal content was not copied into this handoff. A future ignore policy should exclude <code>.env*</code> except <code>.env.example</code>, <code>node_modules/</code>, <code>.venv/</code>, <code>__pycache__/</code>, <code>*.pyc</code>, local DB files, and scratch/test results, while explicitly retaining the required template assets and distributable HTML. Creating that policy is outside this read-only task.</p>
+<h2 id="section-13">13. Risks and blockers</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Finding</th>
+<th>Required response / evidence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Blocker</td>
+<td>No commits, no tracked build inputs</td>
+<td>Obtain a reviewed source transfer before expecting clone-based deployment; section 12</td>
+</tr>
+<tr>
+<td>Blocker if private access is required</td>
+<td>No authentication or authorization</td>
+<td>Ask author question 2 before making a supposedly private editor public. Do not claim a login exists; <code>editor/app.js</code>, <code>editor/editor-shell.html</code></td>
+</tr>
+<tr>
+<td>Transfer risk</td>
+<td>No <code>.gitignore</code>; development history and test designs are untracked alongside sources</td>
+<td>Transfer by allowlist, never publish the repo root; section 12</td>
+</tr>
+<tr>
+<td>Rebuild risk</td>
+<td>No dependency lockfile; offline rendering/tests hardcode original PC paths</td>
+<td>Use the verified prebuilt bundle for this deployment; editor source build only requires Pillow. <code>editor/build_editor.py</code>, <code>scripts/render_assets.py:8</code></td>
+</tr>
+<tr>
+<td>Build status</td>
+<td>Editor build succeeded in RAM and matched existing bundle exactly; disk-writing/cloud staging build not executed due read-only constraints</td>
+<td>Results and exact limitation in section 4; clean install/cloud execution <strong>unverified</strong></td>
+</tr>
+<tr>
+<td>Draft migration</td>
+<td>New origin/browser has empty localStorage; clearing storage loses drafts</td>
+<td>Export/import each desired JSON before moving; <code>editor/app.js:57,65,228</code></td>
+</tr>
+<tr>
+<td>Storage limits</td>
+<td>Multiple embedded images can exceed localStorage quota; save catches errors but does not create a server backup</td>
+<td>Use project JSON exports; <code>editor/app.js:55</code>, <code>editor/app.js:139</code></td>
+</tr>
+<tr>
+<td>CORS</td>
+<td>Current embedded/local image path needs no cross-origin API configuration. Replacing embedded images with arbitrary remote URLs can taint Canvas and break PNG export</td>
+<td>Preserve embedded assets; <code>editor/app.js:139</code>, <code>editor/editor-core.js:276</code></td>
+</tr>
+<tr>
+<td>Security headers</td>
+<td>A strict CSP that blocks inline scripts/styles, data fonts/images, or Blob images can break this bundle</td>
+<td>Test any host CSP against embedded scripts and export flow; <code>editor/build_editor.py</code>, <code>editor/editor-core.js:287</code></td>
+</tr>
+<tr>
+<td>Browser differences</td>
+<td>Memory use for large/doubled Canvas exports, download handling, and font rendering vary</td>
+<td>Test target desktop/mobile browsers; <code>editor/editor-core.js:276</code>, <code>editor/editor-shell.html</code></td>
+</tr>
+<tr>
+<td>Public assets</td>
+<td>Every embedded template, seed text, image, and logo is downloadable by visitors</td>
+<td>Author must approve publication and retained attribution; <code>editor/template-fields.json</code>, <code>assets/source/source-provenance.json</code>, <code>editor/المصادر والحقوق.txt</code></td>
+</tr>
+<tr>
+<td>Scope mismatch</td>
+<td>Online AI generation, shared asset libraries, account management, and server video rendering do not exist in the editor</td>
+<td>Do not promise them after static deployment; <code>output/generation/</code>, <code>output/preflight/</code>, <code>editor/app.js</code></td>
+</tr>
+<tr>
+<td>Stale deploys</td>
+<td>Vercel staging copies the committed bundle, not editor source files</td>
+<td>Rebuild bundle after source/template edits; <code>editor/build_editor.py</code>, section 11</td>
+</tr>
+</tbody></table></div>
+<p>Secrets audit: no committed secrets can exist in the current empty commit history. A heuristic scan covered 109 text/source files before this handoff and found no credential candidates after excluding embedded base64 assets. Initial matches were false positives within embedded binary asset text. This is <strong>not an exhaustive security guarantee</strong>; binary archives, unrelated PC credentials, full browser storage, and hidden external configuration were not audited. No secret values were printed or written, and no confirmed secret-bearing file was found.</p>
+<p>No code was changed to address any risk. Previously recorded browser-test success does not prove production/mobile compatibility. No production account, DNS, or host-specific access control was verified.</p>
+<h2 id="section-14">14. Open questions only the author can answer</h2>
+<ol>
+<li>Is the public scope only the 13-template editor, or should selected motion/scene/social-profile downloads also be published? Default deployment includes only the editor and font license (<code>editor/build_editor.py</code>, <code>output/</code>).</li>
+<li>Should anyone with the URL use the editor, or must access be restricted to named collaborators? Current code has no authentication (<code>editor/app.js</code>).</li>
+<li>Which existing browser drafts and privately downloaded files must be preserved, and which original browser profile/origin contains them? Their sizes and contents are unverified (<code>editor/app.js:57,65</code>).</li>
+<li>Are all embedded seed texts, portraits, attribution notices, and marks approved for publication, or must any template be removed/replaced first? (<code>editor/template-fields.json</code>, <code>assets/source/source-provenance.json</code>).</li>
+<li>Which repository owner, Vercel team, authorized deployer, and final domain should own the release? No deploy target is configured in this repo.</li>
+<li>Does “put the system online” include the separate Ollama/ComfyUI/A1111 authoring workflow? If yes, that is a separate GPU/API deployment scope, not supported by the current browser editor (<code>output/preflight/analyze_qwen_references.py</code>, <code>output/generation/run_local_sdxl_comparison.py</code>).</li>
+</ol>
+<p>Open question count: <strong>6</strong>. These questions do not change the verified static architecture; questions 1, 2, 4, and 5 must be resolved before choosing the public audience and publishing content.</p>
+</main></div></body></html>

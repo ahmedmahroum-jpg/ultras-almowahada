@@ -1,0 +1,47 @@
+# Credentials and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.aws/
+
+# Installed dependencies and caches
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.cache/
+.vercel/
+public/
+dist/
+
+# Local databases and user working files
+*.db
+*.sqlite
+*.sqlite3
+*.db-*
+*.sqlite-*
+*.log
+.aider*
+**/aider-*-request.txt
+tmp/
+editor/tests/results/
+
+# Local AI experiments and performance records (not editor dependencies)
+output/preflight/
+output/generation/
+output/performance/
+output/delivery-manifest.json
+output/ultras-identity-v01.zip
+output/identity/render-proof.cjs
+output/identity/render-report.json
+
+# Required output/identity SVG and PNG files intentionally remain tracked.
+.DS_Store
+Thumbs.db
+desktop.ini

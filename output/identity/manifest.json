@@ -1,0 +1,108 @@
+{
+  "assets": [
+    {
+      "id": "logo-primary",
+      "title": "الشعار الأساسي",
+      "width": 1200,
+      "height": 930,
+      "file": "logo-primary.svg",
+      "png_file": "logo-primary.png"
+    },
+    {
+      "id": "logo-black",
+      "title": "الشعار أحادي اللون الأسود",
+      "width": 1200,
+      "height": 930,
+      "file": "logo-black.svg",
+      "png_file": "logo-black.png"
+    },
+    {
+      "id": "logo-white",
+      "title": "الشعار أحادي اللون الأبيض",
+      "width": 1200,
+      "height": 930,
+      "file": "logo-white.svg",
+      "png_file": "logo-white.png"
+    },
+    {
+      "id": "avatar",
+      "title": "صورة الحساب",
+      "width": 1080,
+      "height": 1080,
+      "file": "avatar.svg",
+      "png_file": "avatar.png"
+    },
+    {
+      "id": "01-introduction",
+      "title": "منشور تعريفي",
+      "width": 1080,
+      "height": 1350,
+      "file": "01-introduction.svg",
+      "png_file": "01-introduction.png"
+    },
+    {
+      "id": "02-quote",
+      "title": "قالب تصريح موثق",
+      "width": 1080,
+      "height": 1350,
+      "file": "02-quote.svg",
+      "png_file": "02-quote.png"
+    },
+    {
+      "id": "03-comparison",
+      "title": "قالب مقارنة تصريحين",
+      "width": 1080,
+      "height": 1350,
+      "file": "03-comparison.svg",
+      "png_file": "03-comparison.png"
+    },
+    {
+      "id": "04-important-news",
+      "title": "قالب خبر مهم",
+      "width": 1080,
+      "height": 1350,
+      "file": "04-important-news.svg",
+      "png_file": "04-important-news.png"
+    },
+    {
+      "id": "05-voting",
+      "title": "قالب التصويت",
+      "width": 1080,
+      "height": 1350,
+      "file": "05-voting.svg",
+      "png_file": "05-voting.png"
+    },
+    {
+      "id": "06-story",
+      "title": "قصة عمودية",
+      "width": 1080,
+      "height": 1920,
+      "file": "06-story.svg",
+      "png_file": "06-story.png"
+    },
+    {
+      "id": "07-speaker-lower-third",
+      "title": "شريط تعريف للموشن",
+      "width": 1920,
+      "height": 1080,
+      "file": "07-speaker-lower-third.svg",
+      "png_file": "07-speaker-lower-third.png"
+    },
+    {
+      "id": "cover",
+      "title": "غلاف أفقي",
+      "width": 1920,
+      "height": 640,
+      "file": "cover.svg",
+      "png_file": "cover.png"
+    },
+    {
+      "id": "logo-symbol",
+      "title": "رمز الجمهور والعلم",
+      "width": 700,
+      "height": 590,
+      "file": "logo-symbol.svg",
+      "png_file": "logo-symbol.png"
+    }
+  ]
+}
